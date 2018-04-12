@@ -35,6 +35,6 @@ Qualquer método para coletar os dados é válido. Caso não saiba por onde come
 
 Para executar o arquivo em modo standalone chame da seguinte forma:
 
-python3.6 -m reddit_crawler dogs;askreddit
+`python3.6 -m reddit_crawler dogs;askreddit`
 
-Ele irá retornar as threads com mais de 5000 votos do Reddit
+Ele irá retornar as threads com mais de 5000 votos do Reddit para cada subreddit enviado como entrada.
