@@ -24,7 +24,7 @@ def get_threads(subreddit):
 
 
         thread["subreddit"] = element.attrs["data-subreddit"]
-        thread["titulo"] = element.find("a.title", first=True).text
+        thread["title"] = element.find("a.title", first=True).text
         thread["upvotes"] = convert_upvotes_to_num(element.attrs["data-score"])
         thread["comments"] = BASE_URL + element.attrs["data-permalink"]
         thread["link"] = element.attrs["data-url"]
@@ -43,7 +43,7 @@ def get_threads(subreddit):
 def print_subreddits(threads):
 
     for thread in threads:
-        print(f"r/{thread['subreddit']} - [{thread['upvotes']}] {thread['titulo']}")
+        print(f"r/{thread['subreddit']} - [{thread['upvotes']}] {thread['title']}")
         print(f"\tLink: {thread['link']}")
         print(f"\tComments: {thread['comments']}\n")
 
