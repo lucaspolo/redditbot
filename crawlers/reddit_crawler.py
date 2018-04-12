@@ -30,7 +30,7 @@ def get_threads(subreddit):
 
         if element.attrs["data-domain"] == f"self.{subreddit}":
             thread["external"] = False
-        else
+        else:
             thread["external"] = True
 
         threads.append(thread)
