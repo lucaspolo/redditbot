@@ -22,14 +22,16 @@ def get_threads(subreddit):
     for element in elements_threads:
         thread = {}
 
+
         thread["subreddit"] = element.attrs["data-subreddit"]
         thread["titulo"] = element.find("a.title", first=True).text
         thread["upvotes"] = convert_upvotes_to_num(element.attrs["data-score"])
-        thread["comments"] = element.attrs["data-permalink"]
+        thread["comments"] = BASE_URL + element.attrs["data-permalink"]
         thread["link"] = element.attrs["data-url"]
 
         if element.attrs["data-domain"] == f"self.{subreddit}":
             thread["external"] = False
+            thread["link"] = BASE_URL + thread["link"]
         else:
             thread["external"] = True
 
