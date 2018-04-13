@@ -5,10 +5,10 @@ from telegram.ext import Updater, CommandHandler
 
 import crawlers.reddit_crawler as rc
 
-DEFAULT_MESSAGE = """r/{subreddit} - [{upvotes}]
+DEFAULT_MESSAGE = """r/{subreddit} - [{upvotes} votos]
 {title}
 Link: {link}
-Comentarios: {comments}"""
+Comentários: {comments}"""
 
 
 def start(bot, update):
