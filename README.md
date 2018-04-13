@@ -25,6 +25,16 @@ Boas implementações! 🎉
 
 ## Resolução - Strings
 
+Para chamar o teste do programa execute:
+
+`python3.6 strings.text_slicer`
+
+Ele irá imprimir duas vezes o texto, a primeira sem justificar e a segunda justificando. Caso seja passado um caminho de um arquivo de texto o mesmo será impresso reformatado:
+
+Ex:
+
+`python3.6 strings.text_slicer ~/meu_arquivo.txt`
+
 ## Resolução - Crawler e Bot
 
 Para executar direto no CLI chame o bot da seguinte forma:
@@ -58,6 +68,6 @@ Ex:
  
  `docker build -t meu_bot .`
  
- Depois deve-se iniciar o bot passando uma variável de ambiente chamada telegram-token com o Token do bot:
+ Depois deve-se iniciar o container-bot passando uma variável de ambiente chamada telegram-token com o Token do bot:
  
  `docker run -e telegram-token='[SEU TOKEN]' -it --rm --name bot meu_bot`
