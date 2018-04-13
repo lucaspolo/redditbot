@@ -70,7 +70,7 @@ if __name__ == "__main__":
     if len(sys.argv[1:]) == 1:
         arquivo = sys.argv[1]
 
-    with open(sys.argv[1], "r") as file:
+    with open(arquivo, "r") as file:
         texto = file.read()
         texto_fatiado = limitar_texto(texto)
         print(texto_fatiado)
