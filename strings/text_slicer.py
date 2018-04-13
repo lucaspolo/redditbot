@@ -65,7 +65,7 @@ def limitar_texto(texto, largura=40, justifica=False):
 
 
 if __name__ == "__main__":
-    arquivo = 'texto_exemplo.txt'
+    arquivo = 'strings/texto_exemplo.txt'
 
     if len(sys.argv[1:]) == 1:
         arquivo = sys.argv[1]
