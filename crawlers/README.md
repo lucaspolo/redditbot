@@ -1,7 +1,5 @@
 # Desafio 2: Crawlers
 
-## Para ver a resolução vá ao final!
-
 Parte do trabalho na IDwall inclui desenvolver *crawlers/scrapers* para coletar dados de websites.
 Como nós nos divertimos trabalhando, às vezes trabalhamos para nos divertir!
 
@@ -30,11 +28,3 @@ Construir um robô que nos envie essa lista via Telegram sempre que receber o co
 
 
 Qualquer método para coletar os dados é válido. Caso não saiba por onde começar, procure por SeleniumHQ (Java), PhantomJS (Javascript) e Scrapy (Python).
-
-## Resolução
-
-Para executar o arquivo em modo standalone chame da seguinte forma:
-
-`python3.6 -m reddit_crawler dogs;askreddit`
-
-Ele irá retornar as threads com mais de 5000 votos do Reddit para cada subreddit enviado como entrada.

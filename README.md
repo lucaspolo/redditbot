@@ -1,6 +1,6 @@
 # Desafios IDwall
 
-## Para ver a resolução vá ao final!
+##![#c5f015](https://placehold.it/15/c5f015/000000?text=+) Para ver a resolução vá ao final!
 
 Aqui estão os desafios para a primeira fase de testes de candidatos da IDwall.  
 Escolha em qual linguagem irá implementar (a não ser que um de nossos colaboradores lhe instrua a utilizar uma linguagem específica).  

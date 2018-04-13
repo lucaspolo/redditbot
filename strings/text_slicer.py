@@ -1,5 +1,5 @@
 import textwrap
-
+import sys
 
 def text_slicer(text, width):
     wraper = textwrap.TextWrapper(drop_whitespace=False, width=width)
@@ -16,7 +16,7 @@ def limitar_texto(texto, width=40):
 
 
 if __name__ == "__main__":
-    with open("texto_exemplo.txt", "r") as file:
+    with open(sys.argv[1], "r") as file:
         texto = file.read()
         texto_fatiado = limitar_texto(texto)
         print(texto_fatiado)
