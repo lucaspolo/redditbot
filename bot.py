@@ -1,9 +1,7 @@
 import os
 import logging
 
-from telegram import ParseMode
 from telegram.ext import Updater, CommandHandler
-
 
 import crawlers.reddit_crawler as rc
 
