@@ -23,9 +23,17 @@ Caso queira mais detalhes de como trabalhamos, quais são nossos valores e ideai
 
 Boas implementações! 🎉
 
-## Resolução
+## Resolução - Strings
 
-### Execução no terminal
+## Resolução - Crawler e Bot
+
+Para executar direto no CLI chame o bot da seguinte forma:
+
+`python3.6 -m crawlers.reddit_crawler askreddit;dogs;gifs`
+
+Será apresentada as informações sobre o tópico questionado.
+
+### Execução do bot no terminal
 
 Para executar o bot é necessário ter uma variável de ambiente com o Token do Telegram:
 
