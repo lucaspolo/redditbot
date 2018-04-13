@@ -43,6 +43,22 @@ Para executar direto no CLI chame o bot da seguinte forma:
 
 Será apresentada as informações sobre o tópico questionado.
 
+### Execução pelo Docker
+ 
+Para executar o bot basta rodar o comando:
+ 
+`docker run -e telegram-token='[TOKEN-TELEGRAM]' -it --rm --name bot lucaspolo/reddit-bot`
+ 
+Ele irá buscar a imagem no registry e iniciará o container.
+ 
+Para subir o container direto do Dockerfile é necessário primeiro realizar o build da imagem:
+ 
+`docker build -t meu_bot .`
+ 
+Depois deve-se iniciar o container-bot passando uma variável de ambiente chamada telegram-token com o Token do bot:
+ 
+`docker run -e telegram-token='[SEU TOKEN]' -it --rm --name bot meu_bot`
+ 
 ### Execução do bot no terminal
 
 Para executar o bot é necessário ter uma variável de ambiente com o Token do Telegram:
@@ -61,19 +77,3 @@ Os comandos do bot são
 Ex:
 
 `/nadaparafazer dogs;askreddit`
-
- ### Execução pelo Docker
- 
- Para executar o bot basta rodar o comando:
- 
- `docker run -e telegram-token='[TOKEN-TELEGRAM]' -it --rm --name bot lucaspolo/reddit-bot`
- 
- Ele irá buscar a imagem no registry e iniciará o container.
- 
- Para subir o container direto do Dockerfile é necessário primeiro realizar o build da imagem:
- 
- `docker build -t meu_bot .`
- 
- Depois deve-se iniciar o container-bot passando uma variável de ambiente chamada telegram-token com o Token do bot:
- 
- `docker run -e telegram-token='[SEU TOKEN]' -it --rm --name bot meu_bot`
