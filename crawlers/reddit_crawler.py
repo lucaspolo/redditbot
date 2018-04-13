@@ -12,6 +12,11 @@ def convert_upvotes_to_num(votes):
 
 
 def get_threads(subreddit):
+    """Recupera as threads e suas informações do subreddit
+
+    :param subreddit: subreddit a ser pesquisado
+    :return: lista de threads do subreddit
+    """
 
     r = session.get(BASE_SUBREDDIT.format(subreddit))
 
@@ -41,6 +46,7 @@ def get_threads(subreddit):
 
 
 def print_subreddits(threads):
+    """Imprime de maneira formatada as threads do subreddit"""
 
     for thread in threads:
         print(f"r/{thread['subreddit']} - [{thread['upvotes']}] {thread['title']}")
