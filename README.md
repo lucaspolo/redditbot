@@ -1,5 +1,7 @@
 # Desafios IDwall
 
+## Para ver a resolução vá ao final!
+
 Aqui estão os desafios para a primeira fase de testes de candidatos da IDwall.  
 Escolha em qual linguagem irá implementar (a não ser que um de nossos colaboradores lhe instrua a utilizar uma linguagem específica).  
 
@@ -20,3 +22,34 @@ A implementação deve ficar na pasta correspondente ao desafio. Fique à vontad
 Caso queira mais detalhes de como trabalhamos, quais são nossos valores e ideais, confira a página [Carreira IDwall](https://idwall.co/carreira) e mesmo que seu perfil não esteja listado nas vagas em aberto, lhe encorajamos a mandar seu CV! Valorizamos bons profissionais sempre e gostamos de manter contato com gente boa.
 
 Boas implementações! 🎉
+
+## Resolução
+
+### Execução no terminal
+
+Para executar o bot é necessário ter uma variável de ambiente com o Token do Telegram:
+
+`telegram-token=[SEU TOKEN]`
+
+Depois disso basta iniciar a execução do bot:
+
+`python3.6 bot.py`
+
+Os comandos do bot são 
+
+- /start: Inicia o bot, recebendo uma mensagem de boas vindas.
+- /nadaparafazer [subreddits]: Busca nos subreddits indicados as threads que estão bombando (upvotes > 5000).
+
+Ex:
+
+`/nadaparafazer dogs;askreddit`
+
+ ### Execução pelo Docker
+ 
+ Para subir um container é necessário primeiro realizar o build da imagem:
+ 
+ `docker build -t meu_bot .`
+ 
+ Depois deve-se iniciar o bot passando uma variável de ambiente chamada telegram-token com o Token do bot:
+ 
+ `docker run -e telegram-token='[SEU TOKEN]' -it --rm --name bot meu_bot`
