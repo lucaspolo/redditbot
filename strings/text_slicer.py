@@ -19,6 +19,8 @@ def text_slicer(texto, largura):
 def justificar(linha, largura=40):
     """Justifica a linha redistribuindo os espaços até atingir a largura
 
+    TODO Ajustar quando há quebra de linha
+
     >>> justificar("Batata doce doc")
     'Batata              doce             doc'
 
@@ -26,12 +28,15 @@ def justificar(linha, largura=40):
     :param largura: largura máxima
     :return: linha justificada de acordo com a largura
     """
-    palavras = linha.rstrip("\n").split(" ")
+    palavras = linha.split(" ")
     total_caracteres = len(''.join(palavras))
     total_espacos = largura - total_caracteres
     separacoes = len(palavras) - 1
 
     if len(palavras) == separacoes:
+        separacoes -= 1
+
+    if palavras[-1] == "\n":
         separacoes -= 1
 
     novos_espacos = [(" " * (total_espacos // separacoes))] * separacoes
@@ -65,7 +70,7 @@ def limitar_texto(texto, largura=40, justifica=False):
 
 
 if __name__ == "__main__":
-    arquivo = 'strings/texto_exemplo.txt'
+    arquivo = 'texto_exemplo.txt'
 
     if len(sys.argv[1:]) == 1:
         arquivo = sys.argv[1]

@@ -64,7 +64,13 @@ Ex:
 
  ### Execução pelo Docker
  
- Para subir um container é necessário primeiro realizar o build da imagem:
+ Para executar o bot basta rodar o comando:
+ 
+ `docker run -e telegram-token='[TOKEN-TELEGRAM]' -it --rm --name bot lucaspolo/reddit-bot`
+ 
+ Ele irá buscar a imagem no registry e iniciará o container.
+ 
+ Para subir o container direto do Dockerfile é necessário primeiro realizar o build da imagem:
  
  `docker build -t meu_bot .`
  
