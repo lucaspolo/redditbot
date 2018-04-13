@@ -3,20 +3,35 @@ import sys
 from itertools import zip_longest
 
 
-def text_slicer(text, largura):
+def text_slicer(texto, largura):
+    """Divide o texto sem quebrar as palavras
+
+    :param text: Texto para ser divido
+    :param largura: largura máxima
+    :return: o texto reformatado com a largura limitada
+    """
     wraper = textwrap.TextWrapper(drop_whitespace=False, width=largura)
-    wraped_texts = wraper.wrap(text)
+    wraped_texts = wraper.wrap(texto)
 
     return [wraped_text.lstrip().replace("  ", "\n") for wraped_text in wraped_texts]
 
 
 def justificar(linha, largura=40):
-    palavras = linha.split(" ")
+    """Justifica a linha redistribuindo os espaços até atingir a largura
+
+    >>> justificar("Batata doce doc")
+    'Batata              doce             doc'
+
+    :param linha: linha a ser justificada
+    :param largura: largura máxima
+    :return: linha justificada de acordo com a largura
+    """
+    palavras = linha.rstrip("\n").split(" ")
     total_caracteres = len(''.join(palavras))
     total_espacos = largura - total_caracteres
     separacoes = len(palavras) - 1
 
-    if len(palavras) - 1 == separacoes:
+    if len(palavras) == separacoes:
         separacoes -= 1
 
     novos_espacos = [(" " * (total_espacos // separacoes))] * separacoes
@@ -32,6 +47,13 @@ def justificar(linha, largura=40):
 
 
 def limitar_texto(texto, largura=40, justifica=False):
+    """Limita cada linha do texto de acordo com largura
+
+    :param texto: texto a ser limitado
+    :param largura: largura máxima do texto
+    :param justifica: caso True justifica o texto de acordo com a largura
+    :return: texto com a largura limitada
+    """
     texto_fatiado = text_slicer(texto, largura)
 
     if justifica:
