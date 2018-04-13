@@ -29,7 +29,7 @@ def get_threads(subreddit):
         thread["comments"] = BASE_URL + element.attrs["data-permalink"]
         thread["link"] = element.attrs["data-url"]
 
-        if element.attrs["data-domain"] == f"self.{subreddit}":
+        if thread["link"].startswith("/r/"):
             thread["external"] = False
             thread["link"] = BASE_URL + thread["link"]
         else:
