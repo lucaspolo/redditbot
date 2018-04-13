@@ -45,7 +45,7 @@ Será apresentada as informações sobre o tópico questionado.
 
 ### Execução pelo Docker
 
-Existe uma versão do bot executando na AWS, converse com ele pelo [@lucaspolobot]
+Existe uma versão do bot executando na AWS, converse com ele pelo **@lucaspolobot**
  
 Para executar o bot basta rodar o comando:
  
