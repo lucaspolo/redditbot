@@ -35,6 +35,11 @@ Ex:
 
 `python3.6 strings.text_slicer ~/meu_arquivo.txt`
 
+#### TODO
+
+- Baixa cobertura de testes (quase zero);
+- Corrigir tratamento de espaços, isto prejudica a quebra.
+
 ## Resolução - Crawler e Bot
 
 Para executar direto no CLI chame o bot da seguinte forma:
@@ -79,3 +84,8 @@ Os comandos do bot são
 Ex:
 
 `/nadaparafazer dogs;askreddit`
+
+#### TODO
+
+- Baixíssima cobertura de testes;
+- Trocar estrutura de dicionário por NamedTuple ou para Data Classes (Python 3.7)
