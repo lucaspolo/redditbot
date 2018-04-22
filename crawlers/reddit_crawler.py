@@ -53,7 +53,7 @@ def print_subreddits(threads):
         print(f"\tLink: {thread['link']}")
         print(f"\tComments: {thread['comments']}\n")
 
-def filter_by_votes(threads, min_votes=5000):
+def filter_by_votes(threads, min_votes=500):
     return [thread for thread in threads if thread['upvotes'] > min_votes]
 
 def main(subreddits):
