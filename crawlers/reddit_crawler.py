@@ -27,7 +27,6 @@ def get_threads(subreddit):
     for element in elements_threads:
         thread = {}
 
-
         thread["subreddit"] = element.attrs["data-subreddit"]
         thread["title"] = element.find("a.title", first=True).text
         thread["upvotes"] = convert_upvotes_to_num(element.attrs["data-score"])
@@ -53,12 +52,15 @@ def print_subreddits(threads):
         print(f"\tLink: {thread['link']}")
         print(f"\tComments: {thread['comments']}\n")
 
+
 def filter_by_votes(threads, min_votes=500):
     return [thread for thread in threads if thread['upvotes'] > min_votes]
+
 
 def main(subreddits):
     for subreddit in subreddits:
         print_subreddits(filter_by_votes(get_threads(subreddit)))
+
 
 if __name__ == '__main__':
     main(sys.argv[1].split(";"))

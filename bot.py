@@ -40,7 +40,6 @@ def nada_para_fazer(bot, update, args):
                              text=f"Não encontrei nada bombando em r/{subreddit}")
 
 
-
 def main():
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
