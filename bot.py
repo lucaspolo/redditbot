@@ -44,7 +44,7 @@ def nada_para_fazer(bot, update, args):
 def main():
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
-    token = os.environ['telegram-token']
+    token = os.environ['TELEGRAM_TOKEN']
 
     updater = Updater(token=token)
 
