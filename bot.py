@@ -41,7 +41,7 @@ def nada_para_fazer(bot, update, args):
 
 
 def main():
-    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
     token = os.environ['TELEGRAM_TOKEN']
 
