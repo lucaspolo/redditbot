@@ -19,12 +19,12 @@ def start(bot, update):
 def nada_para_fazer(bot, update, args):
     chat_id = update.message.chat_id
 
-    joined_args = str.join(";", args) #If you pass separeted we join using ; separator
+    joined_args = str.join(";", args)  # If you pass separeted we join using ; separator
 
     subreddits = joined_args.split(";")
 
     if len(subreddits) == 0 or len(args) == 0:
-        bot.send_message(chat_id = chat_id,
+        bot.send_message(chat_id=chat_id,
                          text="Digite o termo da procura, ex: /nadaparafazer dogs;python")
         return
 

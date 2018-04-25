@@ -1,11 +1,10 @@
 import sys
 from requests_html import HTMLSession
+import requests
 
 BASE_URL = "https://www.reddit.com"
-BASE_SUBREDDIT = BASE_URL + "/r/{0}"
 
-session = HTMLSession()
-
+REDDIT_URL = "https://www.reddit.com/r/{0}/new.json"
 
 def convert_upvotes_to_num(votes):
     return int(votes.replace("k", "000"))
@@ -18,20 +17,28 @@ def get_threads(subreddit):
     :return: lista de threads do subreddit
     """
 
-    r = session.get(BASE_SUBREDDIT.format(subreddit))
+    headers = {
+        'User-Agent': 'telegram:pytroxa:v1',
+    }
 
-    elements_threads = r.html.find(".thing")
+    r = requests.get(REDDIT_URL.format(subreddit), params={'sort' : 'new'}, headers=headers)
+
+    response_dict = r.json()
+
+    elements_threads = response_dict['data']['children'] if r.status_code == requests.codes.ok else []
 
     threads = []
 
     for element in elements_threads:
         thread = {}
 
-        thread["subreddit"] = element.attrs["data-subreddit"]
-        thread["title"] = element.find("a.title", first=True).text
-        thread["upvotes"] = convert_upvotes_to_num(element.attrs["data-score"])
-        thread["comments"] = BASE_URL + element.attrs["data-permalink"]
-        thread["link"] = element.attrs["data-url"]
+        dados = element['data']
+
+        thread["subreddit"] = dados['subreddit']
+        thread["title"] = dados['title']
+        thread["upvotes"] = dados['ups']
+        thread["comments"] = BASE_URL + dados['permalink']
+        thread["link"] = dados['url']
 
         if thread["link"].startswith("/r/"):
             thread["external"] = False
@@ -53,7 +60,7 @@ def print_subreddits(threads):
         print(f"\tComments: {thread['comments']}\n")
 
 
-def filter_by_votes(threads, min_votes=500):
+def filter_by_votes(threads, min_votes=1):
     return [thread for thread in threads if thread['upvotes'] > min_votes]
 
 
@@ -63,4 +70,5 @@ def main(subreddits):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1].split(";"))
+    entrada = input("Digite os topicos desejados separados por (;): ")
+    main(entrada.split(";"))
