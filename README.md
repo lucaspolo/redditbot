@@ -2,6 +2,8 @@
 
 Um bot que envia para você as coisas mais interessantes do Reddit!
 
+[![Build Status](https://travis-ci.org/lucaspolo/redditbot.svg?branch=master)](https://travis-ci.org/lucaspolo/redditbot)
+
 ## Execução direto na linha de comando
 
 Para executar direto no CLI chame o bot da seguinte forma:
