@@ -1,10 +1,9 @@
-import sys
-from requests_html import HTMLSession
 import requests
 
 BASE_URL = "https://www.reddit.com"
 
 REDDIT_URL = "https://www.reddit.com/r/{0}/top.json"
+
 
 def convert_upvotes_to_num(votes):
     return int(votes.replace("k", "000"))
@@ -21,12 +20,7 @@ def get_threads(subreddit):
         'User-Agent': 'telegram:pytroxa:v1',
     }
 
-    params = {
-        'sort' : 'top',
-        't' : 'week'
-    }
-
-    r = requests.get(REDDIT_URL.format(subreddit), params={'sort' : 'new'}, headers=headers)
+    r = requests.get(REDDIT_URL.format(subreddit), params={'sort': 'new'}, headers=headers)
 
     response_dict = r.json()
 
