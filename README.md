@@ -2,7 +2,12 @@
 
 Um bot que envia para você as coisas mais interessantes do Reddit!
 
+
+[![Python 3](https://pyup.io/repos/github/lucaspolo/redditbot/python-3-shield.svg)](https://pyup.io/repos/github/lucaspolo/redditbot/)
 [![Build Status](https://travis-ci.org/lucaspolo/redditbot.svg?branch=master)](https://travis-ci.org/lucaspolo/redditbot)
+[![Updates](https://pyup.io/repos/github/lucaspolo/redditbot/shield.svg)](https://pyup.io/repos/github/lucaspolo/redditbot/)
+
+
 
 ## Execução direto na linha de comando
 
