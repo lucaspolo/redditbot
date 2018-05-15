@@ -2,7 +2,9 @@ language: python
 python:
   - 3.6
 install:
-  - pip install -r requirements-dev.txt
+  - pip install -r requirements-dev.txt codecov
 script:
   - flake8
-  - pytest crawlers
+  - pytest crawlers --cov=crawlers
+after_success:
+  - codecov
