@@ -6,6 +6,7 @@ Um bot que envia para você as coisas mais interessantes do Reddit!
 [![Python 3](https://pyup.io/repos/github/lucaspolo/redditbot/python-3-shield.svg)](https://pyup.io/repos/github/lucaspolo/redditbot/)
 [![Build Status](https://travis-ci.org/lucaspolo/redditbot.svg?branch=master)](https://travis-ci.org/lucaspolo/redditbot)
 [![codecov](https://codecov.io/gh/lucaspolo/redditbot/branch/master/graph/badge.svg)](https://codecov.io/gh/lucaspolo/redditbot)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b460fae76331acbccff2/maintainability)](https://codeclimate.com/github/lucaspolo/redditbot/maintainability)
 [![Updates](https://pyup.io/repos/github/lucaspolo/redditbot/shield.svg)](https://pyup.io/repos/github/lucaspolo/redditbot/)
 
 
