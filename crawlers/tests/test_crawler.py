@@ -2,11 +2,11 @@ from crawlers.reddit_crawler import convert_upvotes_to_num, filter_by_votes, \
     convert_element_to_thread, convert_internal_link_to_absolute
 
 
-def test_convert_upvotes_to_num():  # pragma: no cover
+def test_convert_upvotes_to_num():
     assert convert_upvotes_to_num("10k") == 10000
 
 
-def test_filter_by_upvotes():  # pragma: no cover
+def test_filter_by_upvotes():
     threads = [
         {
             'upvotes': 1,
@@ -25,7 +25,7 @@ def test_filter_by_upvotes():  # pragma: no cover
     assert len(filter_by_votes(threads, min_votes=150)) == 2
 
 
-def test_convert_element_to_thread():  # pragma: no cover
+def test_convert_element_to_thread():
     dados = {
         'data': {
             'subreddit': 'r/python',
@@ -50,5 +50,5 @@ def test_convert_element_to_thread():  # pragma: no cover
     assert thread['link'] == 'https://www.reddit.com/r/batata'
 
 
-def test_convert_internal_link_to_absolute():  # pragma: no cover
+def test_convert_internal_link_to_absolute():
     assert convert_internal_link_to_absolute('/r/python/comments') == 'https://www.reddit.com/r/python/comments'
