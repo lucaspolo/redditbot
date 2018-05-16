@@ -1,4 +1,0 @@
-[run]
-omit =
-    # omit test files
-    */tests/*
