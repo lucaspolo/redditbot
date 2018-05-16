@@ -29,25 +29,37 @@ def get_threads(subreddit):
     threads = []
 
     for element in elements_threads:
-        thread = {}
-
-        dados = element['data']
-
-        thread["subreddit"] = dados['subreddit']
-        thread["title"] = dados['title']
-        thread["upvotes"] = dados['ups']
-        thread["comments"] = BASE_URL + dados['permalink']
-        thread["link"] = dados['url']
-
-        if thread["link"].startswith("/r/"):
-            thread["external"] = False
-            thread["link"] = BASE_URL + thread["link"]
-        else:
-            thread["external"] = True
+        thread = convert_element_to_thread(element)
 
         threads.append(thread)
 
     return threads
+
+
+def convert_element_to_thread(element):
+
+    thread = {}
+    dados = element['data']
+    thread["subreddit"] = dados['subreddit']
+    thread["title"] = dados['title']
+    thread["upvotes"] = dados['ups']
+    thread["comments"] = BASE_URL + dados['permalink']
+    thread["link"] = convert_internal_link_to_absolute(dados['url'])
+
+    # if thread["link"].startswith("/r/"):
+    #     thread["external"] = False
+    #     thread["link"] = BASE_URL + thread["link"]
+    # else:
+    #     thread["external"] = True
+
+    return thread
+
+
+def convert_internal_link_to_absolute(link):
+    if link.startswith("/r/"):
+        return BASE_URL + link
+    else:
+        return link
 
 
 def print_subreddits(threads):
