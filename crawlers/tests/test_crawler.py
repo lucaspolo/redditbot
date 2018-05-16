@@ -1,4 +1,5 @@
-from crawlers.reddit_crawler import convert_upvotes_to_num, filter_by_votes, convert_element_to_thread
+from crawlers.reddit_crawler import convert_upvotes_to_num, filter_by_votes, \
+    convert_element_to_thread, convert_internal_link_to_absolute
 
 
 def test_convert_upvotes_to_num():  # pragma: no cover
@@ -47,3 +48,7 @@ def test_convert_element_to_thread():  # pragma: no cover
     thread = convert_element_to_thread(dados)
 
     assert thread['link'] == 'https://www.reddit.com/r/batata'
+
+
+def test_convert_internal_link_to_absolute():  # pragma: no cover
+    assert convert_internal_link_to_absolute('/r/python/comments') == 'https://www.reddit.com/r/python/comments'
