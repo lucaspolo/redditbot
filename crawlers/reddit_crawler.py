@@ -5,8 +5,17 @@ BASE_URL = "https://www.reddit.com"
 REDDIT_URL = "https://www.reddit.com/r/{0}/top.json"
 
 
+class VoteStringInvalid(Exception):
+    pass
+
+
 def convert_upvotes_to_num(votes):
-    return int(votes.replace("k", "000"))
+    try:
+        valor = int(votes.replace("k", "000"))
+    except ValueError:
+        raise VoteStringInvalid(f'{votes} is not a valid input to convert')
+    else:
+        return valor
 
 
 def get_threads(subreddit):
