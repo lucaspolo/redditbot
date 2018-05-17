@@ -1,9 +1,15 @@
+import pytest
+
 from crawlers.reddit_crawler import convert_upvotes_to_num, filter_by_votes, \
     convert_element_to_thread, convert_internal_link_to_absolute
 
 
-def test_convert_upvotes_to_num():
-    assert convert_upvotes_to_num("10k") == 10000
+@pytest.mark.parametrize('input,expected', [
+    ('10k', 10000),
+    ('100', 100),
+])
+def test_convert_upvotes_to_num(input, expected):
+    assert convert_upvotes_to_num(input) == expected
 
 
 def test_filter_by_upvotes():
