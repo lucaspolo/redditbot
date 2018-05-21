@@ -39,16 +39,7 @@ def test_filter_by_upvotes():
     assert len(filter_by_votes(threads, min_votes=150)) == 2
 
 
-def test_convert_element_to_thread():
-    dados = {
-        'data': {
-            'subreddit': 'r/python',
-            'title': 'python',
-            'ups': '1',
-            'permalink': '/r/python/comments',
-            'url': 'https://www.google.com',
-        }
-    }
+def test_convert_element_to_thread(dados):
 
     thread = convert_element_to_thread(dados)
     assert thread['subreddit'] == 'r/python'
