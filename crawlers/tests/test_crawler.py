@@ -1,23 +1,5 @@
-import pytest
-
-from crawlers.reddit_crawler import convert_upvotes_to_num, filter_by_votes, \
-    convert_element_to_thread, convert_internal_link_to_absolute, VoteStringInvalid
-
-
-@pytest.mark.parametrize('param,expected', [
-    ('10k', 10000),
-    ('100', 100),
-])
-def test_convert_upvotes_to_num(param, expected):
-    assert convert_upvotes_to_num(param) == expected
-
-
-@pytest.mark.parametrize('param', [
-    '10j', 'A',
-])
-def test_convert_invalid_upvotes_to_num(param):
-    with pytest.raises(VoteStringInvalid):
-        convert_upvotes_to_num(param)
+from crawlers.reddit_crawler import filter_by_votes, \
+    convert_element_to_thread, convert_internal_link_to_absolute
 
 
 def test_filter_by_upvotes():

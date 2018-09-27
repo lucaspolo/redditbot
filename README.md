@@ -15,9 +15,11 @@ Um bot que envia para você as coisas mais interessantes do Reddit!
 
 Para executar direto no CLI chame o bot da seguinte forma:
 
-`python3.6 -m crawlers.reddit_crawler`
+`python3.7 -m crawlers.reddit_crawler -s "dogs;python {-m VOTOS_MINIMOS}"`
 
-Será questionado quais são os subreddits de interesse, bastando inserir eles separados por ; (ponto-e-virgula).
+Caso necessário, para verificar quais os comandos disponíveis e seus valores padrão, digite:
+
+`python3.7 -m crawlers.reddit_crawler --help`
 
 ### Execução pelo Docker
 
