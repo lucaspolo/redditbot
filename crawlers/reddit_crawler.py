@@ -1,21 +1,9 @@
 import requests
+import click
 
 BASE_URL = "https://www.reddit.com"
 
 REDDIT_URL = "https://www.reddit.com/r/{0}/top.json"
-
-
-class VoteStringInvalid(Exception):
-    pass
-
-
-def convert_upvotes_to_num(votes):
-    try:
-        valor = int(votes.replace("k", "000"))
-    except ValueError:
-        raise VoteStringInvalid(f'{votes} is not a valid input to convert')
-    else:
-        return valor
 
 
 def get_threads(subreddit):
@@ -26,7 +14,7 @@ def get_threads(subreddit):
     """
 
     headers = {
-        'User-Agent': 'telegram:pytroxa:v1',
+        'User-Agent': 'telegram:redditbot:v1',
     }
 
     r = requests.get(REDDIT_URL.format(subreddit), params={'sort': 'new'}, headers=headers)
@@ -84,11 +72,13 @@ def filter_by_votes(threads, min_votes=1):
     return [thread for thread in threads if thread['upvotes'] > min_votes]
 
 
-def main(subreddits):
-    for subreddit in subreddits:
-        print_subreddits(filter_by_votes(get_threads(subreddit)))
+@click.command()
+@click.option('--subreddits', '-s', required=True, help="Threads que deseja buscar separadas por ';'")
+@click.option('--min-votes', '-m', default=5000, help="Número mínimo de votos")
+def main(subreddits, min_votes):
+    for subreddit in subreddits.split(';'):
+        print_subreddits(filter_by_votes(get_threads(subreddit), min_votes=min_votes))
 
 
 if __name__ == '__main__':
-    entrada = input("Digite os topicos desejados separados por (;): ")
-    main(entrada.split(";"))
+    main()
