@@ -17,7 +17,7 @@ Para executar direto no CLI chame o bot da seguinte forma:
 
 `python3.7 -m ui.nadaparafazer -s "dogs;python" {-m VOTOS_MINIMOS}`
 
-Caso necessário, para verificar quais os comandos disponíveis e seus valores padrão, digite:
+Caso necessário, para verificar quais os comandos disponíveis e seus valores padrões, digite:
 
 `python3.7 -m ui.nadaparafazer --help`
 
