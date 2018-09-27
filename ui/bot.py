@@ -31,7 +31,7 @@ def nada_para_fazer(bot, update, args):
     for subreddit in subreddits:
         bot.send_message(chat_id=chat_id,
                          text=f"Procurando o que está bombando em r/{subreddit}...")
-        threads = rc.filter_by_votes(rc.get_threads(subreddit))
+        threads = rc.filter_by_votes(rc.filter_by_votes(rc.get_threads(subreddit), min_votes=5000))
         for thread in threads:
             bot.send_message(chat_id=chat_id,
                              text=DEFAULT_MESSAGE.format(**thread))
