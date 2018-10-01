@@ -35,13 +35,13 @@ Para subir o container direto do Dockerfile é necessário primeiro realizar o b
  
 Depois deve-se iniciar o container-bot passando uma variável de ambiente chamada telegram-token com o Token do bot:
  
-`docker run -e telegram-token='[SEU TOKEN]' -it --rm --name bot meu_bot`
+`docker run -e TELEGRAM-TOKEN='[SEU TOKEN]' -it --rm --name bot meu_bot`
  
 ### Execução do bot no terminal
 
 Para executar o bot é necessário ter uma variável de ambiente com o Token do Telegram:
 
-`telegram-token=[SEU TOKEN]`
+`TELEGRAM-TOKEN=[SEU TOKEN]`
 
 Depois disso basta iniciar a execução do bot:
 
