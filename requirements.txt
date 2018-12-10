@@ -1,5 +1,5 @@
 python-telegram-bot==11.1.0
-requests==2.19.1
+requests==2.21.0
 click==7.0
 
 #Dependendencies of dependencies
