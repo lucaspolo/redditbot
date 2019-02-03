@@ -1,4 +1,4 @@
-from crawlers.reddit_crawler import filter_by_votes, \
+from redditbot.crawlers.reddit_crawler import filter_by_votes, \
     convert_element_to_thread, convert_internal_link_to_absolute
 
 
