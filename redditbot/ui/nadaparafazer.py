@@ -8,7 +8,9 @@ from redditbot.crawlers.reddit_crawler import print_subreddits, filter_by_votes,
 @click.option('--min-votes', '-m', default=5000, help="Número mínimo de votos")
 def main(subreddits, min_votes):
     for subreddit in subreddits.split(';'):
-        print_subreddits(filter_by_votes(get_threads(subreddit), min_votes=min_votes))
+        threads = get_threads(subreddit)
+        filtred_threads = filter_by_votes(threads, min_votes=min_votes)
+        print_subreddits(filtred_threads)
 
 
 if __name__ == '__main__':
