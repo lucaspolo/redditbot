@@ -3,7 +3,7 @@ import logging
 
 from telegram.ext import Updater, CommandHandler
 
-import crawlers.reddit_crawler as rc
+import redditbot.crawlers.reddit_crawler as rc
 
 DEFAULT_MESSAGE = """r/{subreddit} - [{upvotes} votos]
 {title}

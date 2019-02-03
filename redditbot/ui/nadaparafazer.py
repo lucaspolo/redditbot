@@ -1,6 +1,6 @@
 import click
 
-from crawlers.reddit_crawler import print_subreddits, filter_by_votes, get_threads
+from redditbot.crawlers.reddit_crawler import print_subreddits, filter_by_votes, get_threads
 
 
 @click.command()
