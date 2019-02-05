@@ -3,6 +3,7 @@
 flake8==3.7.4
 pytest==4.2.0
 pytest-cov==2.6.1
+responses==0.10.5
 
 entrypoints==0.3
 mccabe==0.6.1
