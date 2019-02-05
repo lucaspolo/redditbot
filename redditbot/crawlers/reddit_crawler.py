@@ -1,8 +1,8 @@
 import requests
 
-BASE_URL = "https://www.reddit.com"
+BASE_URL = 'https://www.reddit.com'
 
-REDDIT_URL = "https://www.reddit.com/r/{0}/top.json"
+REDDIT_URL = 'https://www.reddit.com/r/{0}/top.json'
 
 
 def get_threads(subreddit):
@@ -15,9 +15,7 @@ def get_threads(subreddit):
     headers = {
         'User-Agent': 'telegram:redditbot:v1',
     }
-
     r = requests.get(REDDIT_URL.format(subreddit), params={'sort': 'new'}, headers=headers)
-
     response_dict = r.json()
 
     elements_threads = response_dict['data']['children'] if r.status_code == requests.codes.ok else []
@@ -26,7 +24,6 @@ def get_threads(subreddit):
 
     for element in elements_threads:
         thread = convert_element_to_thread(element)
-
         threads.append(thread)
 
     return threads
@@ -36,23 +33,17 @@ def convert_element_to_thread(element):
 
     thread = {}
     dados = element['data']
-    thread["subreddit"] = dados['subreddit']
-    thread["title"] = dados['title']
-    thread["upvotes"] = dados['ups']
-    thread["comments"] = BASE_URL + dados['permalink']
-    thread["link"] = convert_internal_link_to_absolute(dados['url'])
-
-    # if thread["link"].startswith("/r/"):
-    #     thread["external"] = False
-    #     thread["link"] = BASE_URL + thread["link"]
-    # else:
-    #     thread["external"] = True
+    thread['subreddit'] = dados['subreddit']
+    thread['title'] = dados['title']
+    thread['upvotes'] = dados['ups']
+    thread['comments'] = BASE_URL + dados['permalink']
+    thread['link'] = convert_internal_link_to_absolute(dados['url'])
 
     return thread
 
 
 def convert_internal_link_to_absolute(link):
-    if link.startswith("/r/"):
+    if link.startswith('/r/'):
         return BASE_URL + link
     else:
         return link
@@ -60,7 +51,6 @@ def convert_internal_link_to_absolute(link):
 
 def print_subreddits(threads):
     """Imprime de maneira formatada as threads do subreddit"""
-
     for thread in threads:
         print(f"r/{thread['subreddit']} - [{thread['upvotes']}] {thread['title']}")
         print(f"\tLink: {thread['link']}")
