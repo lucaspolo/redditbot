@@ -3,8 +3,13 @@ from unittest import mock
 
 import responses
 
-from redditbot.crawlers.reddit_crawler import filter_by_votes, \
-    convert_element_to_thread, convert_internal_link_to_absolute, get_threads, print_subreddits
+from redditbot.crawlers.reddit_crawler import (
+    filter_by_votes,
+    convert_element_to_thread,
+    convert_internal_link_to_absolute,
+    get_threads,
+    print_subreddits
+)
 
 
 def test_filter_by_upvotes():
@@ -69,7 +74,7 @@ def test_get_threads():
         status=200
     )
 
-    threads = get_threads("dogs")
+    threads = get_threads('dogs')
 
     assert len(threads) == 1
 

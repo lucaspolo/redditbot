@@ -30,11 +30,11 @@ class TestNadaParaFazerBot:
         bot_mock = MagicMock()
         update_mock = MagicMock()
         update_mock.message.chat_id = 1
-        args = ""
+        args = ''
 
         nada_para_fazer(bot_mock, update_mock, args)
 
         bot_mock.send_message.assert_called_once_with(
             chat_id=update_mock.message.chat_id,
-            text="Digite o termo da procura, ex: /nadaparafazer dogs;python"
+            text='Digite o termo da procura, ex: /nadaparafazer dogs;python'
         )
