@@ -20,11 +20,7 @@ def get_threads(subreddit):
 
     elements_threads = response_dict['data']['children'] if r.status_code == requests.codes.ok else []
 
-    threads = []
-
-    for element in elements_threads:
-        thread = convert_element_to_thread(element)
-        threads.append(thread)
+    threads = [convert_element_to_thread(element) for element in elements_threads]
 
     return threads
 
