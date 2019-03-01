@@ -4,7 +4,7 @@ python:
 install:
   - pip install -r requirements-dev.txt codecov
 script:
-  - flake8
-  - pytest redditbot --cov=redditbot
+  - make lint
+  - make test
 after_success:
   - codecov
