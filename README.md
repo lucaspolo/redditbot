@@ -9,7 +9,7 @@ Um bot que envia para você as coisas mais interessantes do Reddit!
 [![Maintainability](https://api.codeclimate.com/v1/badges/b460fae76331acbccff2/maintainability)](https://codeclimate.com/github/lucaspolo/redditbot/maintainability)
 [![Updates](https://pyup.io/repos/github/lucaspolo/redditbot/shield.svg)](https://pyup.io/repos/github/lucaspolo/redditbot/)
 
-
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 
 ## Execução direto na linha de comando
 
