@@ -1,8 +1,5 @@
-import re
 from unittest import mock
 from unittest.mock import MagicMock, call
-
-import responses
 
 from redditbot.ui import bot
 from redditbot.ui.bot import nada_para_fazer, start
@@ -54,28 +51,10 @@ class TestNadaParaFazerBot:
             text='Digite o termo da procura, ex: /nadaparafazer dogs;python'
         )
 
-    @responses.activate
-    def test_nada_para_fazer_should_send_messages(self):
-        responses.add(
-            responses.GET,
-            re.compile('https://www.reddit.com/r/dogs/top.json'),
-            json={
-                'data': {
-                    'children': [
-                        {
-                            'data': {
-                                'subreddit': 'dogs',
-                                'title': 'Cute Dogs',
-                                'ups': 9999,
-                                'permalink': '/r/cute_dogs',
-                                'url': '/r/cutedogs'
-                            }
-                        }
-                    ]
-                }
-            },
-            status=200
-        )
+    def test_nada_para_fazer_should_send_messages(
+        self,
+        mock_request_dog
+    ):
         bot_mock = MagicMock()
         update_mock = MagicMock()
         update_mock.message.chat_id = 1
@@ -99,18 +78,10 @@ class TestNadaParaFazerBot:
         assert bot_mock.send_message.call_count == 2
         bot_mock.send_message.assert_has_calls(calls)
 
-    @responses.activate
-    def test_nada_para_fazer_should_send_not_found(self):
-        responses.add(
-            responses.GET,
-            re.compile('https://www.reddit.com/r/dogs/top.json'),
-            json={
-                'data': {
-                    'children': []
-                }
-            },
-            status=200
-        )
+    def test_nada_para_fazer_should_send_not_found(
+        self,
+        mock_request_dog_with_low_votes,
+    ):
         bot_mock = MagicMock()
         update_mock = MagicMock()
         update_mock.message.chat_id = 1
