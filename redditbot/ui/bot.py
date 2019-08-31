@@ -28,14 +28,18 @@ def nada_para_fazer(bot, update, args):
                          text='Digite o termo da procura, ex: /nadaparafazer dogs;python')
         return
 
-    for subreddit in subreddits:
-        send_subreddit(bot, chat_id, subreddit)
+    send_subreddit(bot, chat_id, subreddits)
 
 
-def send_subreddit(bot, chat_id, subreddit):
-    bot.send_message(chat_id=chat_id,
-                     text=f'Procurando o que está bombando em r/{subreddit}...')
-    threads = rc.get_threads(subreddit)
+def send_subreddit(bot, chat_id, subreddits):
+    canais_message = ', '.join([
+        f'r/{subreddit}' for subreddit in subreddits
+    ])
+    bot.send_message(
+        chat_id=chat_id,
+        text=f'Procurando o que está bombando em {canais_message}...'
+    )
+    threads = rc.get_threads(subreddits)
     filtered_threads = rc.filter_by_votes(threads, min_votes=5000)
     threads = rc.filter_by_votes(filtered_threads)
     for thread in threads:
@@ -43,7 +47,7 @@ def send_subreddit(bot, chat_id, subreddit):
                          text=DEFAULT_MESSAGE.format(**thread))
     if len(threads) == 0:
         bot.send_message(chat_id=chat_id,
-                         text=f'Não encontrei nada bombando em r/{subreddit}')
+                         text=f'Não encontrei nada bombando em {canais_message}')
 
 
 def main():

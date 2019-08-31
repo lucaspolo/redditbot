@@ -1,28 +1,51 @@
-import requests
+import asyncio
+from http import HTTPStatus
+from itertools import chain
+
+import aiohttp
 
 BASE_URL = 'https://www.reddit.com'
 
 REDDIT_URL = 'https://www.reddit.com/r/{0}/top.json'
 
 
-def get_threads(subreddit):
+def get_threads(subreddits):
+    return list(asyncio.run(_get_subreddits(subreddits)))
+
+
+async def _get_subreddits(subreddits):
     """Recupera as threads e suas informações do subreddit
 
     :param subreddit: subreddit a ser pesquisado
     :return: lista de threads do subreddit
     """
 
+    async with aiohttp.ClientSession() as session:
+        threads = await asyncio.gather(
+            *[asyncio.create_task(_get_threads_for_subreddit(session, subreddit))
+                for subreddit in sorted(subreddits)]
+        )
+
+    return chain.from_iterable(threads)
+
+
+async def _get_threads_for_subreddit(session, subreddit):
+
     headers = {
         'User-Agent': 'telegram:redditbot:v1',
     }
-    r = requests.get(REDDIT_URL.format(subreddit), params={'sort': 'new'}, headers=headers)
-    response_dict = r.json()
+    async with session.get(
+            REDDIT_URL.format(subreddit),
+            params={'sort': 'new'},
+            headers=headers
+    ) as response:
+        elements_threads = []
+        if response.status == HTTPStatus.OK:
+            data = await response.json()
+            elements_threads = data['data']['children']
 
-    elements_threads = response_dict['data']['children'] if r.status_code == requests.codes.ok else []
-
-    threads = [convert_element_to_thread(element) for element in elements_threads]
-
-    return threads
+        threads = [convert_element_to_thread(element) for element in elements_threads]
+        return threads
 
 
 def convert_element_to_thread(element):
