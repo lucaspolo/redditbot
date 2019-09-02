@@ -40,7 +40,7 @@ def send_subreddit(bot, chat_id, subreddits):
         text=f'Procurando o que está bombando em {canais_message}...'
     )
     threads = rc.get_threads(subreddits)
-    filtered_threads = rc.filter_by_votes(threads, min_votes=5000)
+    filtered_threads = rc.filter_by_votes(threads, min_votes=500)
     threads = rc.filter_by_votes(filtered_threads)
     for thread in threads:
         bot.send_message(chat_id=chat_id,
@@ -51,7 +51,7 @@ def send_subreddit(bot, chat_id, subreddits):
 
 
 def main():
-    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
     token = os.environ['TELEGRAM_TOKEN']
 
