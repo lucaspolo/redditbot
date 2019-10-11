@@ -41,7 +41,7 @@ Depois deve-se iniciar o container-bot passando uma variável de ambiente chamad
 
 Para executar o bot é necessário ter uma variável de ambiente com o Token do Telegram:
 
-`TELEGRAM-TOKEN=[SEU TOKEN]`
+`TELEGRAM_TOKEN=[SEU TOKEN]`
 
 Depois disso basta iniciar a execução do bot:
 
