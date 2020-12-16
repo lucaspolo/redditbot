@@ -2,7 +2,7 @@
 
 flake8==3.8.1
 flake8-quotes==3.2.0
-pytest==5.4.2
+pytest==6.2.1
 pytest-cov==2.8.1
 aioresponses==0.6.3
 pip-outdated==0.4.0
