@@ -1,5 +1,5 @@
 FROM python:3.9
-
+ENV PYTHONPATH=.
 WORKDIR /usr/src/app
 
 COPY requirements.txt ./
