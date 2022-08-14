@@ -1,10 +1,10 @@
-import os
 import logging
 
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
 import redditbot.crawlers.reddit_crawler as rc
+from redditbot.config import settings
 
 DEFAULT_MESSAGE = """r/{subreddit} - [{upvotes} votos]
 {title}
@@ -41,7 +41,7 @@ def send_subreddit(update, subreddits):
         text=f'Procurando o que está bombando em {canais_message}...'
     )
     threads = rc.get_threads(subreddits)
-    filtered_threads = rc.filter_by_votes(threads, min_votes=500)
+    filtered_threads = rc.filter_by_votes(threads, min_votes=settings.MIN_VOTES)
     threads = rc.filter_by_votes(filtered_threads)
     for thread in threads:
         update.message.reply_text(
@@ -54,9 +54,9 @@ def send_subreddit(update, subreddits):
 
 
 def main():
-    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-    token = os.getenv('TELEGRAM_TOKEN')
+    token = settings.TELEGRAM_TOKEN
 
     updater = Updater(token=token)
     dispatcher = updater.dispatcher

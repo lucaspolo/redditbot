@@ -187,6 +187,24 @@ tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.1
 toml = ["tomli"]
 
 [[package]]
+name = "dynaconf"
+version = "3.1.9"
+description = "The dynamic configurator for your Python Project"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+yaml = ["ruamel.yaml"]
+vault = ["hvac"]
+toml = ["toml"]
+test = ["configobj", "hvac", "redis", "codecov", "toml", "python-dotenv", "django", "flask (>=0.12)", "radon", "flake8-todo", "flake8-print", "flake8-debugger", "pep8-naming", "flake8", "pytest-mock", "pytest-xdist", "pytest-cov", "pytest"]
+redis = ["redis"]
+ini = ["configobj"]
+configobj = ["configobj"]
+all = ["hvac", "configobj", "ruamel.yaml", "redis"]
+
+[[package]]
 name = "flake8"
 version = "5.0.4"
 description = "the modular source code checker: pep8 pyflakes and co"
@@ -501,7 +519,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "8c1eec417c4f37f77552e92235975b0911f99f041f17b0bafb3ff4bf46aeea0d"
+content-hash = "b56cbc34bc2f9a526e7d0a9bce7ecc9511321d93e472e94fe346a75658602463"
 
 [metadata.files]
 aiodns = [
@@ -764,6 +782,10 @@ coverage = [
     {file = "coverage-6.4.3-cp39-cp39-win_amd64.whl", hash = "sha256:0a84376e4fd13cebce2c0ef8c2f037929c8307fb94af1e5dbe50272a1c651b5d"},
     {file = "coverage-6.4.3-pp36.pp37.pp38-none-any.whl", hash = "sha256:068d6f2a893af838291b8809c876973d885543411ea460f3e6886ac0ee941732"},
     {file = "coverage-6.4.3.tar.gz", hash = "sha256:ec2ae1f398e5aca655b7084392d23e80efb31f7a660d2eecf569fb9f79b3fb94"},
+]
+dynaconf = [
+    {file = "dynaconf-3.1.9-py2.py3-none-any.whl", hash = "sha256:9eaaa6e64a4a64225f80cdad14379a37656b8f2dc607ab0fd949b75d479674cc"},
+    {file = "dynaconf-3.1.9.tar.gz", hash = "sha256:f435c9e5b0b4b1dddf5e17e60a1e4c91ae0e6275aa51522456e671a7be3380eb"},
 ]
 flake8 = [
     {file = "flake8-5.0.4-py2.py3-none-any.whl", hash = "sha256:7a1cf6b73744f5806ab95e526f6f0d8c01c66d7bbe349562d22dfca20610b248"},

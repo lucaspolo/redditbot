@@ -7,12 +7,10 @@ from redditbot.ui.bot import nada_para_fazer, start
 
 class TestMain:
 
-    @mock.patch('redditbot.ui.bot.os')
     @mock.patch('redditbot.ui.bot.Updater')
     def test_main_should_register_bot_handlers_and_start_polling(
         self,
         updater,
-        os
     ):
         updater_mock = updater.return_value
         dispatcher_mock = updater_mock.dispatcher

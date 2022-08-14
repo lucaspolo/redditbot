@@ -1,4 +1,4 @@
-export PYTHONPATH=$(shel pwd)/redditbot/
+export PYTHONPATH=$(shell pwd)/redditbot/
 
 dependencies:
 	@poetry install
