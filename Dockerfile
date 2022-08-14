@@ -1,10 +1,10 @@
-FROM python:3.9
+FROM python:3.10
 ENV PYTHONPATH=.
 WORKDIR /usr/src/app
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
 COPY . .
 
-CMD [ "python", "./redditbot/ui/bot.py" ]
+RUN pip install poetry
+RUN poetry install
+
+CMD [ "poetry", "run", "python", "./redditbot/ui/bot.py" ]

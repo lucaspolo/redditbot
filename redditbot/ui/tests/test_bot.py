@@ -27,27 +27,23 @@ class TestMain:
 class TestNadaParaFazerBot:
 
     def test_start(self):
-        bot_mock = MagicMock()
-        update_mock = MagicMock()
-        update_mock.message.chat_id = 1
+        update = MagicMock()
+        context = MagicMock()
 
-        start(bot_mock, update_mock)
+        start(update, context)
 
-        bot_mock.send_message.assert_called_once_with(
-            chat_id=1,
+        update.message.reply_text.assert_called_once_with(
             text='Está sem o que fazer? Dá um confere no Reddit!'
         )
 
     def test_nada_para_fazer_should_send_help(self):
-        bot_mock = MagicMock()
-        update_mock = MagicMock()
-        update_mock.message.chat_id = 1
-        args = ''
+        update = MagicMock()
+        context = MagicMock()
+        context.args = ''
 
-        nada_para_fazer(bot_mock, update_mock, args)
+        nada_para_fazer(update, context)
 
-        bot_mock.send_message.assert_called_once_with(
-            chat_id=update_mock.message.chat_id,
+        update.message.reply_text.assert_called_once_with(
             text='Digite o termo da procura, ex: /nadaparafazer dogs;python'
         )
 
@@ -55,17 +51,14 @@ class TestNadaParaFazerBot:
         self,
         mock_request_dog
     ):
-        bot_mock = MagicMock()
-        update_mock = MagicMock()
-        update_mock.message.chat_id = 1
-        args = ['dogs']
+        update = MagicMock()
+        context = MagicMock()
+        context.args = ['dogs']
         calls = [
             call(
-                chat_id=update_mock.message.chat_id,
                 text='Procurando o que está bombando em r/dogs...'
             ),
             call(
-                chat_id=update_mock.message.chat_id,
                 text='r/dogs - [9999 votos]\n'
                      'Cute Dogs\n'
                      'Link: https://www.reddit.com/r/cutedogs\n'
@@ -73,31 +66,28 @@ class TestNadaParaFazerBot:
             )
         ]
 
-        nada_para_fazer(bot_mock, update_mock, args)
+        nada_para_fazer(update, context)
 
-        assert bot_mock.send_message.call_count == 2
-        bot_mock.send_message.assert_has_calls(calls)
+        assert update.message.reply_text.call_count == 2
+        update.message.reply_text.assert_has_calls(calls)
 
     def test_nada_para_fazer_should_send_not_found(
         self,
         mock_request_dog_with_low_votes,
     ):
-        bot_mock = MagicMock()
-        update_mock = MagicMock()
-        update_mock.message.chat_id = 1
-        args = ['dogs']
+        update = MagicMock()
+        context = MagicMock()
+        context.args = ['dogs']
         calls = [
             call(
-                chat_id=update_mock.message.chat_id,
                 text='Procurando o que está bombando em r/dogs...'
             ),
             call(
-                chat_id=update_mock.message.chat_id,
                 text='Não encontrei nada bombando em r/dogs'
             )
         ]
 
-        nada_para_fazer(bot_mock, update_mock, args)
+        nada_para_fazer(update, context)
 
-        assert bot_mock.send_message.call_count == 2
-        bot_mock.send_message.assert_has_calls(calls)
+        assert update.message.reply_text.call_count == 2
+        update.message.reply_text.assert_has_calls(calls)
