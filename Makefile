@@ -1,13 +1,13 @@
 export PYTHONPATH=$(shel pwd)/redditbot/
 
 dependencies:
-	pip install -U -r requirements-dev.txt
+	@poetry install
 
 lint:
-	flake8 redditbot
+	@poetry run flake8 redditbot
 
 test:
-	pytest -x
+	@poetry run pytest -x
 
 test-cov:
-	pytest --cov=redditbot
+	@poetry run pytest --cov=redditbot
