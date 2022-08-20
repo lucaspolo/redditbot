@@ -16,7 +16,7 @@ Caso necessário, para verificar quais os comandos disponíveis e seus valores p
 
 Para executar o bot basta rodar o comando:
  
-`docker run -e TELEGRAM_TOKEN='[TOKEN-TELEGRAM]' -it --rm --name bot lucaspolo/reddit-bot`
+`docker run -e TELEGRAM_TOKEN='[TOKEN-TELEGRAM]' -it --rm --name bot lucaspolo/redditbot`
  
 Ele irá buscar a imagem no registry e iniciará o container.
  
