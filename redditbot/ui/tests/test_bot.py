@@ -17,7 +17,7 @@ class TestMain:
 
         bot.main()
 
-        assert dispatcher_mock.add_handler.call_count == 2
+        assert dispatcher_mock.add_handler.call_count == 3
 
         updater_mock.start_polling.assert_called_once()
 
