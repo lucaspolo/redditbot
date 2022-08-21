@@ -64,6 +64,9 @@ def main():
     dispatcher.add_handler(
         CommandHandler('nadaparafazer', nada_para_fazer)
     )
+    dispatcher.add_handler(
+        CommandHandler('n', nada_para_fazer)
+    )
 
     updater.start_polling()
     updater.idle()

@@ -12,6 +12,15 @@ Caso necessário, para verificar quais os comandos disponíveis e seus valores p
 
 `python -m redditbot.ui.nadaparafazer --help`
 
+## Execução do Bot
+
+O bot do Telegram aceita os seguintes comandos:
+
+```
+/start: inicia a conversa respodendo com uma mensagem de boas vindas.
+/nadaparafazer (ou /n) [TÓPICOS SEPARADOS POR ESPAÇO]: procura e responde com os tópicos mais votados
+```
+
 ### Execução pelo Docker
 
 Para executar o bot basta rodar o comando:
