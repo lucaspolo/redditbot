@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/lucaspolo/redditbot/compare/v0.1.1...v0.1.2) (2022-08-21)
+
+
+### Bug Fixes
+
+* change trigger to deploy in Docker Hub ([0d9b936](https://github.com/lucaspolo/redditbot/commit/0d9b936043c46e070e9af4f1f36b55bbe97ccf98))
+
 ## [0.1.1](https://github.com/lucaspolo/redditbot/compare/v0.1.0...v0.1.1) (2022-08-21)
 
 
