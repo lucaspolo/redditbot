@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/lucaspolo/redditbot/compare/v0.1.3...v0.1.4) (2022-08-21)
+
+
+### Bug Fixes
+
+* change release-please to use token ([1a0b5c3](https://github.com/lucaspolo/redditbot/commit/1a0b5c32522a89eb117e0cb45ab0c9da2c63993c))
+
 ## [0.1.3](https://github.com/lucaspolo/redditbot/compare/v0.1.2...v0.1.3) (2022-08-21)
 
 
