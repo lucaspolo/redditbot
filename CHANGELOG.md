@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/lucaspolo/redditbot/compare/v0.1.4...v0.2.0) (2022-08-21)
+
+
+### Features
+
+* add alias for command nadaparafazer ([22cc6e7](https://github.com/lucaspolo/redditbot/commit/22cc6e74d1e17cb5166585dfa447587b0d87767d))
+
 ## [0.1.4](https://github.com/lucaspolo/redditbot/compare/v0.1.3...v0.1.4) (2022-08-21)
 
 
