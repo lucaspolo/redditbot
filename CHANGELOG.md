@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/lucaspolo/redditbot/compare/v0.1.0...v0.1.1) (2022-08-21)
+
+
+### Bug Fixes
+
+* Fix deploy to Docker Hub ([a912efb](https://github.com/lucaspolo/redditbot/commit/a912efbbee4c188064e811688c90c81b4582bb41))
+
 ## 0.1.0 (2022-08-20)
 
 
