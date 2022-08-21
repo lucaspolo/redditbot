@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/lucaspolo/redditbot/compare/v0.1.2...v0.1.3) (2022-08-21)
+
+
+### Bug Fixes
+
+* change release types in Docker Hub CI ([7304796](https://github.com/lucaspolo/redditbot/commit/7304796cf30f9a5dcb95be5b43a79242b9b61c87))
+
 ## [0.1.2](https://github.com/lucaspolo/redditbot/compare/v0.1.1...v0.1.2) (2022-08-21)
 
 
