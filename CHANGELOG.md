@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/lucaspolo/redditbot/compare/v0.3.0...v0.3.1) (2022-08-25)
+
+
+### Bug Fixes
+
+* change the Dockerfile to install only production dependencies ([4e4c8cf](https://github.com/lucaspolo/redditbot/commit/4e4c8cfaa1a12562a809c186e0f240d1b9ba08ac))
+
 ## [0.3.0](https://github.com/lucaspolo/redditbot/compare/v0.2.0...v0.3.0) (2022-08-25)
 
 
