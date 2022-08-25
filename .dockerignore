@@ -1,0 +1,7 @@
+.github
+.coverage
+.coveragers
+.dockerignore
+tests
+CHANGELOG>MD
+README.md
