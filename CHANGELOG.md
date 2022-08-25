@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/lucaspolo/redditbot/compare/v0.2.0...v0.3.0) (2022-08-25)
+
+
+### Features
+
+* change the tests for it own directory ([ea2af5c](https://github.com/lucaspolo/redditbot/commit/ea2af5cb658c64818f0b5e438d6b7376da19303c))
+
+
+### Bug Fixes
+
+* change release types ([4131829](https://github.com/lucaspolo/redditbot/commit/41318296528c4f1814b115185ffe70f1923c00d2))
+
 ## [0.2.0](https://github.com/lucaspolo/redditbot/compare/v0.1.4...v0.2.0) (2022-08-21)
 
 
