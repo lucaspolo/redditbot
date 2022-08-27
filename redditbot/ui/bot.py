@@ -1,5 +1,6 @@
 import logging
 
+import pkg_resources
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackContext
 
@@ -53,6 +54,14 @@ async def send_subreddit(update, subreddits):
         )
 
 
+async def get_version(update: Update, context: CallbackContext):
+    version = pkg_resources.get_distribution('redditbot').version
+
+    await update.message.reply_text(
+        text=f'Version: {version}'
+    )
+
+
 def main():
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -65,6 +74,9 @@ def main():
     )
     app.add_handler(
         CommandHandler('n', nada_para_fazer)
+    )
+    app.add_handler(
+        CommandHandler('version', get_version)
     )
 
     app.run_polling()
