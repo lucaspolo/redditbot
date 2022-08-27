@@ -31,6 +31,7 @@ class TestNadaParaFazerBot:
     async def test_get_version_should_return_version(self):
         update = MagicMock()
         update.message.reply_text = CoroutineMock()
+        update.message.reply_sticker = CoroutineMock()
         context = MagicMock()
 
         await start(update, context)
@@ -40,6 +41,7 @@ class TestNadaParaFazerBot:
     async def test_start(self):
         update = MagicMock()
         update.message.reply_text = CoroutineMock()
+        update.message.reply_sticker = CoroutineMock()
         context = MagicMock()
 
         await start(update, context)
@@ -51,6 +53,7 @@ class TestNadaParaFazerBot:
     async def test_nada_para_fazer_should_send_help(self):
         update = MagicMock()
         update.message.reply_text = CoroutineMock()
+        update.message.reply_sticker = CoroutineMock()
         context = MagicMock()
         context.args = ''
 
@@ -67,6 +70,7 @@ class TestNadaParaFazerBot:
         update = MagicMock()
         update.message.reply_text = CoroutineMock()
         update.message.reply_markdown_v2 = CoroutineMock()
+        update.message.reply_sticker = CoroutineMock()
         context = MagicMock()
         context.args = ['dogs']
         calls_text = [
@@ -77,8 +81,7 @@ class TestNadaParaFazerBot:
         calls_markdown = [
             call(
                 text='r/dogs \\- [9999 votos]'
-                     '\n**Cute Dogs**'
-                     '\n[Link](https://www\\.reddit\\.com/r/cutedogs)'
+                     '\n**[Cute Dogs](https://www\\.reddit\\.com/r/cutedogs)**\n'
                      '\n[Comentários](https://www\\.reddit\\.com/r/cute\\_dogs)'
             )
         ]
@@ -96,6 +99,7 @@ class TestNadaParaFazerBot:
     ):
         update = MagicMock()
         update.message.reply_text = CoroutineMock()
+        update.message.reply_sticker = CoroutineMock()
         context = MagicMock()
         context.args = ['dogs']
         calls = [
