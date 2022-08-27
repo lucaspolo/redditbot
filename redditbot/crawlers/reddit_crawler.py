@@ -38,7 +38,7 @@ async def _get_threads_for_subreddit(session, subreddit):
         if response.status == HTTPStatus.OK:
             data = await response.json()
             elements_threads = filter(
-                lambda x: x['data'].get('subreddit') == subreddit, data['data']['children']
+                lambda x: x['data'].get('subreddit'), data['data']['children']
             )
             threads = [convert_element_to_thread(element) for element in elements_threads]
         return threads
