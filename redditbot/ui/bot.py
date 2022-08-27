@@ -9,12 +9,21 @@ import redditbot.crawlers.reddit_crawler as rc
 from redditbot.config import settings
 
 DEFAULT_MESSAGE = """r/{subreddit} \\- [{upvotes} votos]
-**{title}**
-[Link]({link})
+**[{title}]({link})**\n
 [Comentários]({comments})"""
+
+STICKERS = {
+    'crying_piglet': 'CAACAgIAAxkBAAEXhYNjCojvibG9_v_VIAABGaq0YhoIrYQAAo8BAAIWQmsKO2O0DZs84FkpBA',
+    'alpaca_hi': 'CAACAgIAAxkBAAEXhaRjComgByhjRuOjuFsM_0pZa9I8sQAClwADO2AkFLPjVSHrbN7ZKQQ',
+    'duck_finding': 'CAACAgIAAxkBAAEXhapjCoqLx-ApexksbOfFtQeiTXJ8RAACSQIAAladvQoqlwydCFMhDikE',
+    'ok_piglet': 'CAACAgIAAxkBAAEXhaxjCovR30n5XwH5JmDUGrUNZToNyQACegEAAhZCawqYRZuYnxC0lykE',
+}
 
 
 async def start(update: Update, context: CallbackContext):
+    await update.message.reply_sticker(
+        sticker=STICKERS['alpaca_hi']
+    )
     await update.message.reply_text(
         text='Está sem o que fazer? Dá um confere no Reddit!'
     )
@@ -30,6 +39,9 @@ async def nada_para_fazer(update: Update, context: CallbackContext):
         await update.message.reply_text(
             text='Digite o termo da procura, ex: /nadaparafazer dogs;python'
         )
+        await update.message.reply_sticker(
+            sticker=STICKERS['duck_finding']
+        )
         return
 
     await send_subreddit(update, subreddits)
@@ -42,6 +54,10 @@ async def send_subreddit(update, subreddits):
     await update.message.reply_text(
         text=f'Procurando o que está bombando em {canais_message}...'
     )
+    await update.message.reply_sticker(
+        sticker=STICKERS['ok_piglet']
+    )
+
     threads = await rc.get_subreddits(subreddits)
     filtered_threads = rc.filter_by_votes(threads, min_votes=settings.MIN_VOTES)
     for thread in filtered_threads:
@@ -58,6 +74,9 @@ async def send_subreddit(update, subreddits):
     if len(filtered_threads) == 0:
         await update.message.reply_text(
             text=f'Não encontrei nada bombando em {canais_message}'
+        )
+        await update.message.reply_sticker(
+            sticker=STICKERS['crying_piglet']
         )
 
 
