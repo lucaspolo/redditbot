@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.2](https://github.com/lucaspolo/redditbot/compare/v0.7.1...v0.7.2) (2022-08-27)
+
+
+### Bug Fixes
+
+* fix subreddit name comparsion ([93a865d](https://github.com/lucaspolo/redditbot/commit/93a865d3efa8613f5d83c80962d360098a405ea7))
+
 ## [0.7.1](https://github.com/lucaspolo/redditbot/compare/v0.7.0...v0.7.1) (2022-08-27)
 
 
