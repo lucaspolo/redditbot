@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/lucaspolo/redditbot/compare/v0.7.0...v0.7.1) (2022-08-27)
+
+
+### Bug Fixes
+
+* fix when subreddit does not exist ([88f95d4](https://github.com/lucaspolo/redditbot/commit/88f95d4e5e7e5ef57503b9568d0274dd71d7785a))
+
 ## [0.7.0](https://github.com/lucaspolo/redditbot/compare/v0.6.0...v0.7.0) (2022-08-27)
 
 
