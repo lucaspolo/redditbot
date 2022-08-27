@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.0](https://github.com/lucaspolo/redditbot/compare/v0.6.0...v0.7.0) (2022-08-27)
+
+
+### Features
+
+* add stickers ([a1f3de6](https://github.com/lucaspolo/redditbot/commit/a1f3de63bd76d5359e81fe461ea3b2e2ec4afc36))
+
+
+### Bug Fixes
+
+* fix bot message to improve readbility ([a1f3de6](https://github.com/lucaspolo/redditbot/commit/a1f3de63bd76d5359e81fe461ea3b2e2ec4afc36))
+
 ## [0.6.0](https://github.com/lucaspolo/redditbot/compare/v0.5.0...v0.6.0) (2022-08-27)
 
 
