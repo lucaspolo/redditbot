@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/lucaspolo/redditbot/compare/v0.3.1...v0.4.0) (2022-08-27)
+
+
+### Features
+
+* change bot implementation to async ([ab62323](https://github.com/lucaspolo/redditbot/commit/ab6232361c4820605a6ad15b19da8a8e1ee09602))
+
 ## [0.3.1](https://github.com/lucaspolo/redditbot/compare/v0.3.0...v0.3.1) (2022-08-25)
 
 
