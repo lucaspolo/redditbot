@@ -26,7 +26,7 @@ async def get_subreddits(subreddits):
 
 
 async def _get_threads_for_subreddit(session, subreddit):
-
+    threads = []
     headers = {
         'User-Agent': 'telegram:redditbot:v1',
     }
@@ -35,24 +35,24 @@ async def _get_threads_for_subreddit(session, subreddit):
             params={'sort': 'new'},
             headers=headers
     ) as response:
-        elements_threads = []
         if response.status == HTTPStatus.OK:
             data = await response.json()
-            elements_threads = data['data']['children']
-
-        threads = [convert_element_to_thread(element) for element in elements_threads]
+            elements_threads = filter(
+                lambda x: x['data'].get('subreddit') == subreddit, data['data']['children']
+            )
+            threads = [convert_element_to_thread(element) for element in elements_threads]
         return threads
 
 
 def convert_element_to_thread(element):
 
     thread = {}
-    dados = element['data']
-    thread['subreddit'] = dados['subreddit']
-    thread['title'] = dados['title']
-    thread['upvotes'] = dados['ups']
-    thread['comments'] = BASE_URL + dados['permalink']
-    thread['link'] = convert_internal_link_to_absolute(dados['url'])
+    data = element['data']
+    thread['subreddit'] = data['subreddit']
+    thread['title'] = data['title']
+    thread['upvotes'] = data['ups']
+    thread['comments'] = BASE_URL + data['permalink']
+    thread['link'] = convert_internal_link_to_absolute(data['url'])
 
     return thread
 
