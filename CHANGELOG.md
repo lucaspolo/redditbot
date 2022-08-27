@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/lucaspolo/redditbot/compare/v0.4.0...v0.5.0) (2022-08-27)
+
+
+### Features
+
+* add command to retrieve version ([8c9f9bf](https://github.com/lucaspolo/redditbot/commit/8c9f9bf8210ecd3683be2aced102af0b2820ba17))
+
 ## [0.4.0](https://github.com/lucaspolo/redditbot/compare/v0.3.1...v0.4.0) (2022-08-27)
 
 
