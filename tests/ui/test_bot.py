@@ -66,24 +66,29 @@ class TestNadaParaFazerBot:
     ):
         update = MagicMock()
         update.message.reply_text = CoroutineMock()
+        update.message.reply_markdown_v2 = CoroutineMock()
         context = MagicMock()
         context.args = ['dogs']
-        calls = [
+        calls_text = [
             call(
                 text='Procurando o que está bombando em r/dogs...'
-            ),
+            )
+        ]
+        calls_markdown = [
             call(
-                text='r/dogs - [9999 votos]\n'
-                     'Cute Dogs\n'
-                     'Link: https://www.reddit.com/r/cutedogs\n'
-                     'Comentários: https://www.reddit.com/r/cute_dogs'
+                text='r/dogs \\- [9999 votos]'
+                     '\n**Cute Dogs**'
+                     '\n[Link](https://www\\.reddit\\.com/r/cutedogs)'
+                     '\n[Comentários](https://www\\.reddit\\.com/r/cute\\_dogs)'
             )
         ]
 
         await nada_para_fazer(update, context)
 
-        assert update.message.reply_text.call_count == 2
-        update.message.reply_text.assert_has_calls(calls)
+        assert update.message.reply_text.call_count == 1
+        assert update.message.reply_markdown_v2.call_count == 1
+        update.message.reply_text.assert_has_calls(calls_text)
+        update.message.reply_markdown_v2.assert_has_calls(calls_markdown)
 
     async def test_nada_para_fazer_should_send_not_found(
         self,
