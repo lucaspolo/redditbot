@@ -8,7 +8,7 @@ from redditbot.ui.nadaparafazer import main
 class TestNadaParaFazer:
 
     @mock.patch('redditbot.ui.nadaparafazer.filter_by_votes')
-    @mock.patch('redditbot.ui.nadaparafazer.get_threads')
+    @mock.patch('redditbot.ui.nadaparafazer.get_subreddits')
     @mock.patch('redditbot.ui.nadaparafazer.print_subreddits')
     def test_nada_para_fazer_main_should_call_print(
         self,

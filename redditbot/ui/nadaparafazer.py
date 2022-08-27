@@ -1,6 +1,8 @@
+import asyncio
+
 import click
 
-from redditbot.crawlers.reddit_crawler import print_subreddits, filter_by_votes, get_threads
+from redditbot.crawlers.reddit_crawler import print_subreddits, filter_by_votes, get_subreddits
 
 
 @click.command()
@@ -8,7 +10,7 @@ from redditbot.crawlers.reddit_crawler import print_subreddits, filter_by_votes,
 @click.option('--min-votes', '-m', default=5000, help='Número mínimo de votos')
 def main(subreddits, min_votes):
     subreddits = subreddits.split(';')
-    threads = get_threads(subreddits)
+    threads = asyncio.run(get_subreddits(subreddits))
     filtred_threads = filter_by_votes(threads, min_votes=min_votes)
     print_subreddits(filtred_threads)
 
