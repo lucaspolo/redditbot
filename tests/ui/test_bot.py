@@ -21,12 +21,21 @@ class TestMain:
 
         bot.main()
 
-        assert app_mock.add_handler.call_count == 3
+        assert app_mock.add_handler.call_count == 4
 
         app_mock.run_polling.assert_called_once()
 
 
 class TestNadaParaFazerBot:
+
+    async def test_get_version_should_return_version(self):
+        update = MagicMock()
+        update.message.reply_text = CoroutineMock()
+        context = MagicMock()
+
+        await start(update, context)
+
+        update.message.reply_text.assert_awaited_once()
 
     async def test_start(self):
         update = MagicMock()
