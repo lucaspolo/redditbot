@@ -9,11 +9,7 @@ BASE_URL = 'https://www.reddit.com'
 REDDIT_URL = 'https://www.reddit.com/r/{0}/top.json'
 
 
-def get_threads(subreddits):
-    return list(asyncio.run(_get_subreddits(subreddits)))
-
-
-async def _get_subreddits(subreddits):
+async def get_subreddits(subreddits):
     """Recupera as threads e suas informações do subreddit
 
     :param subreddit: subreddit a ser pesquisado
@@ -26,7 +22,7 @@ async def _get_subreddits(subreddits):
                 for subreddit in sorted(subreddits)]
         )
 
-    return chain.from_iterable(threads)
+    return list(chain.from_iterable(threads))
 
 
 async def _get_threads_for_subreddit(session, subreddit):

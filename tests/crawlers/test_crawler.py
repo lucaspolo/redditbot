@@ -4,8 +4,7 @@ from redditbot.crawlers.reddit_crawler import (
     filter_by_votes,
     convert_element_to_thread,
     convert_internal_link_to_absolute,
-    get_threads,
-    print_subreddits
+    print_subreddits, get_subreddits
 )
 
 
@@ -48,13 +47,6 @@ def test_convert_internal_link_to_absolute():
     assert convert_internal_link_to_absolute('/r/python/comments') == 'https://www.reddit.com/r/python/comments'
 
 
-def test_get_threads(mock_request_dog):
-
-    threads = get_threads(['dogs'])
-
-    assert len(threads) == 1
-
-
 @mock.patch('builtins.print')
 def test_print_subreddits(print_mock):
     thread = {
@@ -68,3 +60,9 @@ def test_print_subreddits(print_mock):
     print_subreddits([thread])
 
     assert print_mock.call_count == 3
+
+
+async def test_get_subreddits_should_return_threads(mock_request_dog):
+    threads = await get_subreddits(['dogs'])
+
+    assert len(threads) == 1
