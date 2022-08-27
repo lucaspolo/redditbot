@@ -3,14 +3,15 @@ import logging
 import pkg_resources
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackContext
+from telegram.helpers import escape_markdown
 
 import redditbot.crawlers.reddit_crawler as rc
 from redditbot.config import settings
 
-DEFAULT_MESSAGE = """r/{subreddit} - [{upvotes} votos]
-{title}
-Link: {link}
-Comentários: {comments}"""
+DEFAULT_MESSAGE = """r/{subreddit} \\- [{upvotes} votos]
+**{title}**
+[Link]({link})
+[Comentários]({comments})"""
 
 
 async def start(update: Update, context: CallbackContext):
@@ -43,12 +44,18 @@ async def send_subreddit(update, subreddits):
     )
     threads = await rc.get_subreddits(subreddits)
     filtered_threads = rc.filter_by_votes(threads, min_votes=settings.MIN_VOTES)
-    threads = rc.filter_by_votes(filtered_threads)
-    for thread in threads:
-        await update.message.reply_text(
-            text=DEFAULT_MESSAGE.format(**thread)
+    for thread in filtered_threads:
+        message = DEFAULT_MESSAGE.format(
+            subreddit=escape_markdown(thread['subreddit'], version=2),
+            upvotes=thread['upvotes'],
+            title=escape_markdown(thread['title'], version=2),
+            link=escape_markdown(thread['link'], version=2),
+            comments=escape_markdown(thread['comments'], version=2),
         )
-    if len(threads) == 0:
+        await update.message.reply_markdown_v2(
+            text=message
+        )
+    if len(filtered_threads) == 0:
         await update.message.reply_text(
             text=f'Não encontrei nada bombando em {canais_message}'
         )
