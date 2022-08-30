@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.3](https://github.com/lucaspolo/redditbot/compare/v0.7.2...v0.7.3) (2022-08-30)
+
+
+### Bug Fixes
+
+* update python-telegram-bot due to vulnerabilities in httpx ([1383e13](https://github.com/lucaspolo/redditbot/commit/1383e1390513d43fc88b02ea5ab1d1199e567d21))
+
 ## [0.7.2](https://github.com/lucaspolo/redditbot/compare/v0.7.1...v0.7.2) (2022-08-27)
 
 
