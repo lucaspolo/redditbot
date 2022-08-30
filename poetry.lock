@@ -134,7 +134,7 @@ tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy 
 
 [[package]]
 name = "cachetools"
-version = "5.0.0"
+version = "5.2.0"
 description = "Extensible memoizing collections and decorators"
 category = "main"
 optional = false
@@ -271,11 +271,11 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "httpcore"
-version = "0.14.7"
+version = "0.15.0"
 description = "A minimal low-level HTTP client."
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 anyio = ">=3.0.0,<4.0.0"
@@ -289,22 +289,21 @@ socks = ["socksio (>=1.0.0,<2.0.0)"]
 
 [[package]]
 name = "httpx"
-version = "0.22.0"
+version = "0.23.0"
 description = "The next generation HTTP client."
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 certifi = "*"
-charset-normalizer = "*"
-httpcore = ">=0.14.5,<0.15.0"
+httpcore = ">=0.15.0,<0.16.0"
 rfc3986 = {version = ">=1.3,<2", extras = ["idna2008"]}
 sniffio = "*"
 
 [package.extras]
 brotli = ["brotli", "brotlicffi"]
-cli = ["click (>=8.0.0,<9.0.0)", "pygments (>=2.0.0,<3.0.0)", "rich (>=10.0.0,<11.0.0)"]
+cli = ["click (>=8.0.0,<9.0.0)", "pygments (>=2.0.0,<3.0.0)", "rich (>=10,<13)"]
 http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (>=1.0.0,<2.0.0)"]
 
@@ -489,7 +488,7 @@ testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtuale
 
 [[package]]
 name = "python-telegram-bot"
-version = "20.0a0"
+version = "20.0a4"
 description = "We have made you a wrapper you can't refuse"
 category = "main"
 optional = false
@@ -497,14 +496,14 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 APScheduler = ">=3.9.1,<3.10.0"
-cachetools = ">=5.0.0,<5.1.0"
-httpx = ">=0.22.0,<0.23.0"
+cachetools = ">=5.2.0,<5.3.0"
+httpx = ">=0.23.0,<0.24.0"
 pytz = ">=2018.6"
-tornado = ">=6.1,<7.0"
+tornado = ">=6.2,<7.0"
 
 [package.extras]
-json = ["ujson (>=4.0.0)"]
 passport = ["cryptography (>=3.0,!=3.4,!=3.4.1,!=3.4.2,!=3.4.3)"]
+rate-limiter = ["aiolimiter (>=1.0.0,<1.1.0)"]
 socks = ["httpx"]
 
 [[package]]
@@ -627,7 +626,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "6333b4411f19e4c1c53840e0a02cbbf5d839696bfca322cc57d9ad423f8564ea"
+content-hash = "252643315d50162086ba15f78592a6f97c1993aaffe48936ae19c9c82bf2e06c"
 
 [metadata.files]
 aiodns = [
@@ -740,8 +739,8 @@ attrs = [
     {file = "attrs-22.1.0.tar.gz", hash = "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6"},
 ]
 cachetools = [
-    {file = "cachetools-5.0.0-py3-none-any.whl", hash = "sha256:8fecd4203a38af17928be7b90689d8083603073622229ca7077b72d8e5a976e4"},
-    {file = "cachetools-5.0.0.tar.gz", hash = "sha256:486471dfa8799eb7ec503a8059e263db000cdda20075ce5e48903087f79d5fd6"},
+    {file = "cachetools-5.2.0-py3-none-any.whl", hash = "sha256:f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db"},
+    {file = "cachetools-5.2.0.tar.gz", hash = "sha256:6a94c6402995a99c3970cc7e4884bb60b4a8639938157eeed436098bf9831757"},
 ]
 cchardet = [
     {file = "cchardet-2.1.7-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:c6f70139aaf47ffb94d89db603af849b82efdf756f187cdd3e566e30976c519f"},
@@ -985,12 +984,12 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 httpcore = [
-    {file = "httpcore-0.14.7-py3-none-any.whl", hash = "sha256:47d772f754359e56dd9d892d9593b6f9870a37aeb8ba51e9a88b09b3d68cfade"},
-    {file = "httpcore-0.14.7.tar.gz", hash = "sha256:7503ec1c0f559066e7e39bc4003fd2ce023d01cf51793e3c173b864eb456ead1"},
+    {file = "httpcore-0.15.0-py3-none-any.whl", hash = "sha256:1105b8b73c025f23ff7c36468e4432226cbb959176eab66864b8e31c4ee27fa6"},
+    {file = "httpcore-0.15.0.tar.gz", hash = "sha256:18b68ab86a3ccf3e7dc0f43598eaddcf472b602aba29f9aa6ab85fe2ada3980b"},
 ]
 httpx = [
-    {file = "httpx-0.22.0-py3-none-any.whl", hash = "sha256:e35e83d1d2b9b2a609ef367cc4c1e66fd80b750348b20cc9e19d1952fc2ca3f6"},
-    {file = "httpx-0.22.0.tar.gz", hash = "sha256:d8e778f76d9bbd46af49e7f062467e3157a5a3d2ae4876a4bbfd8a51ed9c9cb4"},
+    {file = "httpx-0.23.0-py3-none-any.whl", hash = "sha256:42974f577483e1e932c3cdc3cd2303e883cbfba17fe228b0f63589764d7b9c4b"},
+    {file = "httpx-0.23.0.tar.gz", hash = "sha256:f28eac771ec9eb4866d3fb4ab65abd42d38c424739e80c08d8d20570de60b0ef"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
@@ -1161,8 +1160,8 @@ pytest-cov = [
     {file = "pytest_cov-3.0.0-py3-none-any.whl", hash = "sha256:578d5d15ac4a25e5f961c938b85a05b09fdaae9deef3bb6de9a6e766622ca7a6"},
 ]
 python-telegram-bot = [
-    {file = "python-telegram-bot-20.0a0.tar.gz", hash = "sha256:a182a3d081071f1ea34833bc68ed7d0843c1fe0d6dca1d260a0e2d253b150f71"},
-    {file = "python_telegram_bot-20.0a0-py3-none-any.whl", hash = "sha256:483b2b7d39508cb673b07814284d6c25706890c519d9aa8177becbadd969b4e2"},
+    {file = "python-telegram-bot-20.0a4.tar.gz", hash = "sha256:3ec10b5169d40697aba77f245538ecdf989e9ae429fcaddc69a202579b4a6dcb"},
+    {file = "python_telegram_bot-20.0a4-py3-none-any.whl", hash = "sha256:79ce5a179017baeae362382c86c19951413a277ac8dd3f736824da36432ed2e9"},
 ]
 pytz = [
     {file = "pytz-2022.2.1-py2.py3-none-any.whl", hash = "sha256:220f481bdafa09c3955dfbdddb7b57780e9a94f5127e35456a48589b9e0c0197"},
