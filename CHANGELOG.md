@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.4](https://github.com/lucaspolo/redditbot/compare/v0.7.3...v0.7.4) (2022-10-06)
+
+
+### Documentation
+
+* add section to explain how to publish in K8S ([5517149](https://github.com/lucaspolo/redditbot/commit/5517149619a289a6287667097251d23d57f6ccb6))
+
 ## [0.7.3](https://github.com/lucaspolo/redditbot/compare/v0.7.2...v0.7.3) (2022-08-30)
 
 
