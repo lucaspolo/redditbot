@@ -10,7 +10,7 @@ test:
 	@poetry run pytest -x
 
 test-cov:
-	@poetry run pytest --cov=redditbot
+	@poetry run pytest --cov redditbot
 
 run-bot:
 	@poetry run python -m redditbot.ui.bot
