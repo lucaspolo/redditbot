@@ -1,8 +1,4 @@
 from unittest import mock
-from unittest.mock import MagicMock, call
-
-import asynctest
-from asynctest import CoroutineMock
 
 from redditbot.ui import bot
 from redditbot.ui.bot import nada_para_fazer, start
@@ -29,20 +25,20 @@ class TestMain:
 class TestNadaParaFazerBot:
 
     async def test_get_version_should_return_version(self):
-        update = MagicMock()
-        update.message.reply_text = CoroutineMock()
-        update.message.reply_sticker = CoroutineMock()
-        context = MagicMock()
+        update = mock.MagicMock()
+        update.message.reply_text = mock.AsyncMock()
+        update.message.reply_sticker = mock.AsyncMock()
+        context = mock.MagicMock()
 
         await start(update, context)
 
         update.message.reply_text.assert_awaited_once()
 
     async def test_start(self):
-        update = MagicMock()
-        update.message.reply_text = CoroutineMock()
-        update.message.reply_sticker = CoroutineMock()
-        context = MagicMock()
+        update = mock.MagicMock()
+        update.message.reply_text = mock.AsyncMock()
+        update.message.reply_sticker = mock.AsyncMock()
+        context = mock.MagicMock()
 
         await start(update, context)
 
@@ -51,10 +47,10 @@ class TestNadaParaFazerBot:
         )
 
     async def test_nada_para_fazer_should_send_help(self):
-        update = MagicMock()
-        update.message.reply_text = CoroutineMock()
-        update.message.reply_sticker = CoroutineMock()
-        context = MagicMock()
+        update = mock.MagicMock()
+        update.message.reply_text = mock.AsyncMock()
+        update.message.reply_sticker = mock.AsyncMock()
+        context = mock.MagicMock()
         context.args = ''
 
         await nada_para_fazer(update, context)
@@ -67,19 +63,19 @@ class TestNadaParaFazerBot:
         self,
         mock_request_dog
     ):
-        update = MagicMock()
-        update.message.reply_text = CoroutineMock()
-        update.message.reply_markdown_v2 = CoroutineMock()
-        update.message.reply_sticker = CoroutineMock()
-        context = MagicMock()
+        update = mock.MagicMock()
+        update.message.reply_text = mock.AsyncMock()
+        update.message.reply_markdown_v2 = mock.AsyncMock()
+        update.message.reply_sticker = mock.AsyncMock()
+        context = mock.MagicMock()
         context.args = ['dogs']
         calls_text = [
-            call(
+            mock.call(
                 text='Procurando o que está bombando em r/dogs...'
             )
         ]
         calls_markdown = [
-            call(
+            mock.call(
                 text='r/dogs \\- [9999 votos]'
                      '\n**[Cute Dogs](https://www\\.reddit\\.com/r/cutedogs)**\n'
                      '\n[Comentários](https://www\\.reddit\\.com/r/cute\\_dogs)'
@@ -97,16 +93,16 @@ class TestNadaParaFazerBot:
         self,
         mock_request_dog_with_low_votes,
     ):
-        update = MagicMock()
-        update.message.reply_text = CoroutineMock()
-        update.message.reply_sticker = CoroutineMock()
-        context = MagicMock()
+        update = mock.MagicMock()
+        update.message.reply_text = mock.AsyncMock()
+        update.message.reply_sticker = mock.AsyncMock()
+        context = mock.MagicMock()
         context.args = ['dogs']
         calls = [
-            call(
+            mock.call(
                 text='Procurando o que está bombando em r/dogs...'
             ),
-            call(
+            mock.call(
                 text='Não encontrei nada bombando em r/dogs'
             )
         ]
