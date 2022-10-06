@@ -1,10 +1,10 @@
-FROM python:3.10
+FROM python:3.10-slim
 ENV PYTHONPATH=.
 WORKDIR /usr/src/app
 
 COPY . .
 
-RUN pip install poetry
-RUN poetry install  --no-dev
+RUN pip install -U pip poetry
+RUN poetry install --only main
 
 CMD [ "poetry", "run", "python", "./redditbot/ui/bot.py" ]
