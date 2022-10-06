@@ -55,3 +55,48 @@ Os comandos do bot são
 Ex:
 
 `/nadaparafazer dogs;askreddit`
+
+### Kubernetes
+
+Para publicar a aplicação como um deployment no Kubernetes você pode usar o seguinte:
+
+Primeiro crie uma secret para armazenar o token do Telegram:
+
+```bash
+kubectl create configmap redditbot-config --from-literal=telegram-token=$TELEGRAM_TOKEN
+```
+
+Com isso já é possível aplicar o deployment:
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redditbot-deployment
+  labels:
+    app: redditbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redditbot
+  template:
+    metadata:
+      labels:
+        app: redditbot
+    spec:
+      containers:
+        - name: redditbot
+          image: lucaspolo/redditbot
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          env:
+            - name: TELEGRAM_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: redditbot-config
+                  key: telegram-token
+```
