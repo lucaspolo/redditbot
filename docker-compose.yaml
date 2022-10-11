@@ -1,0 +1,7 @@
+version: "3"
+services:
+  redditbot:
+    image: lucaspolo/redditbot
+    restart: always
+    environment:
+    - TELEGRAM_TOKEN=$YOUR_TELEGRAM_TOKEN  # PLEASE PAY ATTENTION HERE

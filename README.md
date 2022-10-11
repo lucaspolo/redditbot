@@ -56,6 +56,21 @@ Ex:
 
 `/nadaparafazer dogs;askreddit`
 
+
+### docker-compose
+
+Para executar o projeto com o docker-compose basta executar o seguinte exemplo, lembrando de alterar o token do Telegram:
+
+```yaml
+version: "3"
+services:
+  redditbot:
+  	image: lucaspolo/redditbot:latest
+  restart: always
+  environment:
+  	TELEGRAM_TOKEN=$YOUR_TELEGRAM_TOKEN  # PLEASE PAY ATTENTION HERE
+```
+
 ### Kubernetes
 
 Para publicar a aplicação como um deployment no Kubernetes você pode usar o seguinte:
