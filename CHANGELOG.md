@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.5](https://github.com/lucaspolo/redditbot/compare/v0.7.4...v0.7.5) (2023-05-16)
+
+
+### Documentation
+
+* add docker-compose example ([4a46e6c](https://github.com/lucaspolo/redditbot/commit/4a46e6c93bacb2d9a11975b71744ef7acbffca89))
+
 ## [0.7.4](https://github.com/lucaspolo/redditbot/compare/v0.7.3...v0.7.4) (2022-10-06)
 
 
