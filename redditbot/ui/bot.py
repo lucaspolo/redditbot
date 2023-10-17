@@ -1,6 +1,6 @@
 import logging
 
-import pkg_resources
+from importlib.metadata import version as version_function
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackContext
 from telegram.helpers import escape_markdown
@@ -81,7 +81,7 @@ async def send_subreddit(update, subreddits):
 
 
 async def get_version(update: Update, context: CallbackContext):
-    version = pkg_resources.get_distribution('redditbot').version
+    version = version_function('redditbot')
 
     await update.message.reply_text(
         text=f'Version: {version}'
