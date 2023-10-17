@@ -2,7 +2,7 @@ import asyncio
 from http import HTTPStatus
 from itertools import chain
 
-import aiohttp
+import httpx
 
 BASE_URL = 'https://www.reddit.com'
 
@@ -16,32 +16,32 @@ async def get_subreddits(subreddits):
     :return: lista de threads do subreddit
     """
 
-    async with aiohttp.ClientSession() as session:
+    async with httpx.AsyncClient() as client:
         threads = await asyncio.gather(
-            *[asyncio.create_task(_get_threads_for_subreddit(session, subreddit))
+            *[asyncio.create_task(_get_threads_for_subreddit(client, subreddit))
                 for subreddit in sorted(subreddits)]
         )
 
     return list(chain.from_iterable(threads))
 
 
-async def _get_threads_for_subreddit(session, subreddit):
+async def _get_threads_for_subreddit(client, subreddit):
     threads = []
     headers = {
         'User-Agent': 'telegram:redditbot:v1',
     }
-    async with session.get(
+    response = await client.get(
             REDDIT_URL.format(subreddit),
             params={'sort': 'new'},
             headers=headers
-    ) as response:
-        if response.status == HTTPStatus.OK:
-            data = await response.json()
-            elements_threads = filter(
-                lambda x: x['data'].get('subreddit'), data['data']['children']
-            )
-            threads = [convert_element_to_thread(element) for element in elements_threads]
-        return threads
+    )
+    if response.status_code == HTTPStatus.OK:
+        data = response.json()
+        elements_threads = filter(
+            lambda x: x['data'].get('subreddit'), data['data']['children']
+        )
+        threads = [convert_element_to_thread(element) for element in elements_threads]
+    return threads
 
 
 def convert_element_to_thread(element):
