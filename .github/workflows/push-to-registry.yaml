@@ -21,7 +21,7 @@ jobs:
 
       - name: Extract metadata for Docker
         id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        uses: docker/metadata-action@31cebacef4805868f9ce9a0cb03ee36c32df2ac4
         with:
           images: lucaspolo/redditbot
 
