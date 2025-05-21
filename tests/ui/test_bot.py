@@ -1,7 +1,14 @@
+import pytest
+import datetime
 from unittest import mock
+from unittest.mock import AsyncMock # For AsyncMock
+
+from telegram import Update, User, Message, Chat # For simulating Update and related objects
+from telegram.ext import ContextTypes # For simulating Context
 
 from redditbot.ui import bot
-from redditbot.ui.bot import nada_para_fazer, start
+from redditbot.ui.bot import nada_para_fazer, start, user_info # Import user_info
+import httpx # For simulating API error
 
 
 class TestMain:
@@ -111,3 +118,86 @@ class TestNadaParaFazerBot:
 
         assert update.message.reply_text.call_count == 2
         update.message.reply_text.assert_has_calls(calls)
+
+
+class TestUserInfoBot:
+    @pytest.mark.asyncio
+    @mock.patch('redditbot.crawlers.reddit_crawler.get_user_info', new_callable=AsyncMock)
+    async def test_user_info_success(self, mock_get_user_info):
+        """Test user_info command for a successful user lookup."""
+        username = 'testuser'
+        user_data = {'name': username, 'karma': 123, 'created_utc': 1609459200.0}
+        mock_get_user_info.return_value = user_data
+
+        update = mock.create_autospec(Update, instance=True)
+        update.message = mock.create_autospec(Message, instance=True)
+        update.message.chat = mock.create_autospec(Chat, instance=True)
+        update.message.from_user = mock.create_autospec(User, instance=True)
+        update.message.reply_text = AsyncMock()
+
+        context = mock.create_autospec(ContextTypes.DEFAULT_TYPE, instance=True)
+        context.args = [username]
+
+        await user_info(update, context)
+
+        expected_date = datetime.datetime.fromtimestamp(user_data['created_utc'], tz=datetime.timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+        expected_message = f"User: {user_data['name']}\nKarma: {user_data['karma']}\nAccount Created: {expected_date}"
+        update.message.reply_text.assert_called_once_with(expected_message)
+
+    @pytest.mark.asyncio
+    @mock.patch('redditbot.crawlers.reddit_crawler.get_user_info', new_callable=AsyncMock)
+    async def test_user_info_not_found(self, mock_get_user_info):
+        """Test user_info command when the user is not found."""
+        username = 'nonexistentuser'
+        mock_get_user_info.return_value = None
+
+        update = mock.create_autospec(Update, instance=True)
+        update.message = mock.create_autospec(Message, instance=True)
+        update.message.chat = mock.create_autospec(Chat, instance=True)
+        update.message.from_user = mock.create_autospec(User, instance=True)
+        update.message.reply_text = AsyncMock()
+
+        context = mock.create_autospec(ContextTypes.DEFAULT_TYPE, instance=True)
+        context.args = [username]
+
+        await user_info(update, context)
+
+        update.message.reply_text.assert_called_once_with(f'User {username} not found.')
+
+    @pytest.mark.asyncio
+    async def test_user_info_no_username_provided(self):
+        """Test user_info command when no username is provided."""
+        update = mock.create_autospec(Update, instance=True)
+        update.message = mock.create_autospec(Message, instance=True)
+        update.message.chat = mock.create_autospec(Chat, instance=True)
+        update.message.from_user = mock.create_autospec(User, instance=True)
+        update.message.reply_text = AsyncMock()
+
+        context = mock.create_autospec(ContextTypes.DEFAULT_TYPE, instance=True)
+        context.args = []  # No arguments
+
+        await user_info(update, context)
+
+        update.message.reply_text.assert_called_once_with('Please provide a Reddit username. Usage: /userinfo <username>')
+
+    @pytest.mark.asyncio
+    @mock.patch('redditbot.crawlers.reddit_crawler.get_user_info', new_callable=AsyncMock)
+    async def test_user_info_api_error(self, mock_get_user_info):
+        """Test user_info command when an API error occurs."""
+        username = 'erroruser'
+        mock_get_user_info.side_effect = httpx.HTTPStatusError(
+            "API Error", request=mock.Mock(), response=mock.Mock()
+        )
+
+        update = mock.create_autospec(Update, instance=True)
+        update.message = mock.create_autospec(Message, instance=True)
+        update.message.chat = mock.create_autospec(Chat, instance=True)
+        update.message.from_user = mock.create_autospec(User, instance=True)
+        update.message.reply_text = AsyncMock()
+
+        context = mock.create_autospec(ContextTypes.DEFAULT_TYPE, instance=True)
+        context.args = [username]
+
+        await user_info(update, context)
+
+        update.message.reply_text.assert_called_once_with('Sorry, something went wrong while fetching user information.')

@@ -74,3 +74,34 @@ def print_subreddits(threads):
 
 def filter_by_votes(threads, min_votes=1):
     return [thread for thread in threads if thread['upvotes'] > min_votes]
+
+
+async def get_user_info(username: str):
+    """Fetches information about a Reddit user.
+
+    Args:
+        username: The username of the Reddit user.
+
+    Returns:
+        A dictionary containing user information (name, karma, created_utc),
+        or None if the user is not found.
+    Raises:
+        Exception: If there is an API error.
+    """
+    url = f"{BASE_URL}/user/{username}/about.json"
+    headers = {'User-Agent': 'telegram:redditbot:v1'}
+
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, headers=headers)
+
+    if response.status_code == HTTPStatus.OK:
+        data = response.json()['data']
+        return {
+            'name': data['name'],
+            'karma': data['total_karma'],
+            'created_utc': data['created_utc'],
+        }
+    elif response.status_code == HTTPStatus.NOT_FOUND:
+        return None
+    else:
+        response.raise_for_status()

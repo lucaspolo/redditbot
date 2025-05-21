@@ -1,4 +1,5 @@
 import logging
+import datetime  # Added for timestamp conversion
 
 from importlib.metadata import version as version_function
 from telegram import Update
@@ -104,8 +105,38 @@ def main():
     app.add_handler(
         CommandHandler('version', get_version)
     )
+    app.add_handler(CommandHandler('userinfo', user_info))  # Added user_info handler
+    app.add_handler(CommandHandler('ui', user_info))  # Added alias ui for user_info
 
     app.run_polling()
+
+
+async def user_info(update: Update, context: CallbackContext):
+    """Handles the /userinfo command to fetch and display Reddit user information."""
+    if not context.args:
+        await update.message.reply_text('Please provide a Reddit username. Usage: /userinfo <username>')
+        return
+
+    username = context.args[0]
+
+    try:
+        user_data = await rc.get_user_info(username)
+
+        if user_data is None:
+            await update.message.reply_text(f'User {username} not found.')
+        else:
+            created_date = datetime.datetime.fromtimestamp(user_data['created_utc'], tz=datetime.timezone.utc)
+            formatted_date = created_date.strftime('%Y-%m-%d %H:%M:%S UTC')
+            message = (
+                f"User: {user_data['name']}\n"
+                f"Karma: {user_data['karma']}\n"
+                f"Account Created: {formatted_date}"
+            )
+            await update.message.reply_text(message)
+
+    except Exception as e:
+        logging.error(f"Error fetching user info for {username}: {e}")
+        await update.message.reply_text('Sorry, something went wrong while fetching user information.')
 
 
 if __name__ == '__main__':
