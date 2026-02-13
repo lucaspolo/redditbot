@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime, timezone
 
 from importlib.metadata import version as version_function
 from telegram import Update
@@ -88,6 +89,35 @@ async def get_version(update: Update, context: CallbackContext):
     )
 
 
+async def user_info(update: Update, context: CallbackContext):
+    args = context.args
+
+    if not args:
+        await update.message.reply_text(
+            text='Usage: /user <username>'
+        )
+        return
+
+    username = args[0]
+    user_data = await rc.get_user_info(username)
+
+    if user_data is None:
+        await update.message.reply_text(
+            text=f'User "{username}" not found'
+        )
+        return
+
+    total_karma = user_data['link_karma'] + user_data['comment_karma']
+    created_date = datetime.fromtimestamp(user_data['created_utc'], timezone.utc)
+    account_age_days = (datetime.now(timezone.utc) - created_date).days
+
+    await update.message.reply_text(
+        text=f'User: {user_data["name"]}\n'
+             f'Total Karma: {total_karma}\n'
+             f'Account Age: {account_age_days} days'
+    )
+
+
 def main():
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -103,6 +133,9 @@ def main():
     )
     app.add_handler(
         CommandHandler('version', get_version)
+    )
+    app.add_handler(
+        CommandHandler('user', user_info)
     )
 
     app.run_polling()
