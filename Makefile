@@ -1,16 +1,16 @@
 export PYTHONPATH=$(shell pwd)/redditbot/
 
 dependencies:
-	@poetry install
+	@uv sync
 
 lint:
-	@poetry run flake8 redditbot
+	@uv run flake8 redditbot
 
 test:
-	@poetry run pytest -x
+	@uv run pytest -x
 
 test-cov:
-	@poetry run pytest --cov redditbot
+	@uv run pytest --cov redditbot
 
 run-bot:
-	@poetry run python -m redditbot.ui.bot
+	@uv run python -m redditbot.ui.bot

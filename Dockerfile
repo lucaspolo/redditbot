@@ -2,9 +2,11 @@ FROM python:3.12-slim
 ENV PYTHONPATH=.
 WORKDIR /usr/src/app
 
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+COPY pyproject.toml uv.lock ./
+RUN uv sync --no-dev --frozen
+
 COPY . .
 
-RUN pip install -U pip poetry
-RUN poetry install --only main
-
-CMD [ "poetry", "run", "python", "./redditbot/ui/bot.py" ]
+CMD [ "uv", "run", "python", "./redditbot/ui/bot.py" ]
