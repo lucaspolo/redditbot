@@ -7,6 +7,7 @@ import httpx
 BASE_URL = 'https://www.reddit.com'
 
 REDDIT_URL = 'https://www.reddit.com/r/{0}/top.json'
+USER_URL = 'https://www.reddit.com/user/{0}/about.json'
 
 
 async def get_subreddits(subreddits):
@@ -74,3 +75,29 @@ def print_subreddits(threads):
 
 def filter_by_votes(threads, min_votes=1):
     return [thread for thread in threads if thread['upvotes'] > min_votes]
+
+
+async def get_user_info(username):
+    """Fetch Reddit user information
+
+    :param username: Reddit username to look up
+    :return: dict with user info or None if not found
+    """
+    headers = {
+        'User-Agent': 'telegram:redditbot:v1',
+    }
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            USER_URL.format(username),
+            headers=headers
+        )
+    if response.status_code == HTTPStatus.OK:
+        data = response.json()
+        user_data = data.get('data', {})
+        return {
+            'name': user_data.get('name'),
+            'link_karma': user_data.get('link_karma', 0),
+            'comment_karma': user_data.get('comment_karma', 0),
+            'created_utc': user_data.get('created_utc', 0),
+        }
+    return None

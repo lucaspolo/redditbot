@@ -4,7 +4,9 @@ from redditbot.crawlers.reddit_crawler import (
     filter_by_votes,
     convert_element_to_thread,
     convert_internal_link_to_absolute,
-    print_subreddits, get_subreddits
+    print_subreddits,
+    get_subreddits,
+    get_user_info
 )
 
 
@@ -66,3 +68,20 @@ async def test_get_subreddits_should_return_threads(mock_request_dog):
     threads = await get_subreddits(['dogs'])
 
     assert len(threads) == 1
+
+
+async def test_get_user_info_should_return_user_data(mock_request_user):
+    user = await get_user_info('testuser')
+
+    assert user['name'] == 'testuser'
+    assert user['link_karma'] == 1000
+    assert user['comment_karma'] == 500
+    assert user['created_utc'] == 1609459200.0
+
+
+async def test_get_user_info_should_return_none_for_not_found(
+    mock_request_user_not_found
+):
+    user = await get_user_info('nonexistent')
+
+    assert user is None

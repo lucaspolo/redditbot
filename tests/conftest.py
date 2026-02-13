@@ -45,3 +45,28 @@ def mock_request_dog_with_low_votes(httpx_mock):
             }
         },
     )
+
+
+@pytest.fixture
+def mock_request_user(httpx_mock):
+    httpx_mock.add_response(
+        method='GET',
+        url='https://www.reddit.com/user/testuser/about.json',
+        json={
+            'data': {
+                'name': 'testuser',
+                'link_karma': 1000,
+                'comment_karma': 500,
+                'created_utc': 1609459200.0,
+            }
+        },
+    )
+
+
+@pytest.fixture
+def mock_request_user_not_found(httpx_mock):
+    httpx_mock.add_response(
+        method='GET',
+        url='https://www.reddit.com/user/nonexistent/about.json',
+        status_code=404,
+    )

@@ -1,7 +1,7 @@
 from unittest import mock
 
 from redditbot.ui import bot
-from redditbot.ui.bot import nada_para_fazer, start
+from redditbot.ui.bot import nada_para_fazer, start, user_info
 
 
 class TestMain:
@@ -17,7 +17,7 @@ class TestMain:
 
         bot.main()
 
-        assert app_mock.add_handler.call_count == 4
+        assert app_mock.add_handler.call_count == 5
 
         app_mock.run_polling.assert_called_once()
 
@@ -111,3 +111,55 @@ class TestNadaParaFazerBot:
 
         assert update.message.reply_text.call_count == 2
         update.message.reply_text.assert_has_calls(calls)
+
+
+class TestUserInfo:
+
+    async def test_user_info_should_send_usage_when_no_args(self):
+        update = mock.MagicMock()
+        update.message.reply_text = mock.AsyncMock()
+        context = mock.MagicMock()
+        context.args = []
+
+        await user_info(update, context)
+
+        update.message.reply_text.assert_awaited_once_with(
+            text='Usage: /user <username>'
+        )
+
+    @mock.patch('redditbot.ui.bot.rc.get_user_info')
+    async def test_user_info_should_send_user_data(self, get_user_info_mock):
+        get_user_info_mock.return_value = {
+            'name': 'testuser',
+            'link_karma': 1000,
+            'comment_karma': 500,
+            'created_utc': 1609459200.0,
+        }
+        update = mock.MagicMock()
+        update.message.reply_text = mock.AsyncMock()
+        context = mock.MagicMock()
+        context.args = ['testuser']
+
+        await user_info(update, context)
+
+        get_user_info_mock.assert_awaited_once_with('testuser')
+        call_args = update.message.reply_text.call_args
+        assert 'testuser' in call_args.kwargs['text']
+        assert '1500' in call_args.kwargs['text']
+
+    @mock.patch('redditbot.ui.bot.rc.get_user_info')
+    async def test_user_info_should_send_not_found(
+        self,
+        get_user_info_mock
+    ):
+        get_user_info_mock.return_value = None
+        update = mock.MagicMock()
+        update.message.reply_text = mock.AsyncMock()
+        context = mock.MagicMock()
+        context.args = ['nonexistent']
+
+        await user_info(update, context)
+
+        update.message.reply_text.assert_awaited_once_with(
+            text='User "nonexistent" not found'
+        )
