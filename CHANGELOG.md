@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/lucaspolo/redditbot/compare/v0.7.5...v0.8.0) (2026-02-13)
+
+
+### Features
+
+* add new command to get user data ([b0339b3](https://github.com/lucaspolo/redditbot/commit/b0339b3588bb5ce648b2a112b660b7aded4bfefb))
+
 ## [0.7.5](https://github.com/lucaspolo/redditbot/compare/v0.7.4...v0.7.5) (2023-05-16)
 
 
