@@ -1,6 +1,6 @@
 [project]
 name = "redditbot"
-version = "0.7.5"
+version = "0.8.0"
 description = "Simple bot to get Reddit posts"
 authors = [{name = "Lucas", email = "polo@example.com"}]
 license = {text = "GPL-3.0"}
