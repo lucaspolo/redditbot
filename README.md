@@ -114,7 +114,7 @@ spec:
                 configMapKeyRef:
                   name: redditbot-config
                   key: telegram-token
-
+```
 ## Como Contribuir
 
 Este projeto está configurado para ser desenvolvido no **GitHub Codespaces**. Isso significa que você pode configurar um ambiente de desenvolvimento completo diretamente no seu navegador ou no VS Code local com apenas um clique.
