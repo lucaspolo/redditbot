@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/lucaspolo/redditbot/compare/v0.8.0...v0.8.1) (2026-03-05)
+
+
+### Documentation
+
+* update README.md ([403aa52](https://github.com/lucaspolo/redditbot/commit/403aa526eafd0b091f7a3e0e9713304eeb593888))
+
 ## [0.8.0](https://github.com/lucaspolo/redditbot/compare/v0.7.5...v0.8.0) (2026-02-13)
 
 
