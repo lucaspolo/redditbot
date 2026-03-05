@@ -114,4 +114,15 @@ spec:
                 configMapKeyRef:
                   name: redditbot-config
                   key: telegram-token
+
+## Como Contribuir
+
+Este projeto está configurado para ser desenvolvido no **GitHub Codespaces**. Isso significa que você pode configurar um ambiente de desenvolvimento completo diretamente no seu navegador ou no VS Code local com apenas um clique.
+
+Você pode usar o Codespaces para:
+- **Desenvolver**: O ambiente já vem com todas as dependências instaladas (`uv`, `python`, etc).
+- **Testar**: Execute `make test` para rodar a suíte de testes.
+- **Alterar**: Modifique o código e veja as mudanças em tempo real.
+
+Para mais detalhes sobre padrões de código, linting e testes, consulte o arquivo [AGENTS.md](AGENTS.md).
 ```
