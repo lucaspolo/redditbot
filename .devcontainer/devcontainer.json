@@ -1,7 +1,7 @@
 {
   "name": "RedditBot",
   "image": "mcr.microsoft.com/devcontainers/python:3.12",
-  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && . $HOME/.local/bin/env && make dependencies",
+  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && export PATH=$HOME/.local/bin:$PATH && make dependencies",
   "remoteEnv": {
     "PYTHONPATH": "${containerWorkspaceFolder}"
   },
